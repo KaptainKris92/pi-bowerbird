@@ -115,4 +115,4 @@ For MARP, use `![bg contain](docs/diagrams/system.light.svg)`, or the WebP for P
 
 ## License
 
-MIT. See [NOTICE](NOTICE) for design influences and font licensing.
+MIT.

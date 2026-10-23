@@ -38,8 +38,7 @@
     "templates/",
     "examples/*.bower.json",
     "README.md",
-    "LICENSE",
-    "NOTICE"
+    "LICENSE"
   ],
   "pi": {
     "extensions": ["./extensions/bowerbird.ts"],
