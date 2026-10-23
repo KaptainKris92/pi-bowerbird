@@ -42,7 +42,8 @@ test("expressive remains available as an explicit style", () => {
 
 test("fonts are embedded only on request", async () => {
   const { build } = await import("../lib/export.mjs");
-  const { mkdtempSync, readFileSync: read } = await import("node:fs");
+  const { mkdirSync, mkdtempSync, readFileSync: read } = await import("node:fs");
+  mkdirSync(new URL("../deprecated/", import.meta.url), { recursive: true });
   const out = mkdtempSync(new URL("../deprecated/test-out-", import.meta.url).pathname);
   const file = new URL("../examples/pi-packages.bower.json", import.meta.url).pathname;
   await build(file, { outDir: out, formats: ["svg"] });

@@ -26,7 +26,7 @@
     "bowerbird": "bin/bowerbird.mjs"
   },
   "scripts": {
-    "test": "node --test tests/",
+    "test": "node --test",
     "gallery": "node bin/bowerbird.mjs render examples/bowerbird.bower.json --out examples/gallery"
   },
   "files": [

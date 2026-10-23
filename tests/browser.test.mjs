@@ -42,7 +42,9 @@ async function withBrowser(fn) {
 }
 
 test("viewer controls keep working after panning (flat and iso)", { skip: !existsSync(CHROME) && "Chrome not installed" }, async () => {
-  const out = mkdtempSync(path.join(repo, "deprecated", "test-out-"));
+  const scratch = path.join(repo, "deprecated");
+  mkdirSync(scratch, { recursive: true });
+  const out = mkdtempSync(path.join(scratch, "test-out-"));
   const file = path.join(repo, "examples", "bowerbird.bower.json");
   const pages = [];
   for (const view of ["flat", "iso"]) {
