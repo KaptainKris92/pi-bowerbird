@@ -14,6 +14,13 @@ bowerbird is built first for pi, as a skill and an extension that an agent uses 
   <img alt="Bowerbird architecture" src="examples/gallery/flat-lr/bowerbird.light.svg">
 </picture>
 
+Same diagram in isometric view:
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="examples/gallery/iso-lr/bowerbird.dark.svg">
+  <img alt="Bowerbird architecture in isometric view" src="examples/gallery/iso-lr/bowerbird.light.svg">
+</picture>
+
 ## Why not Mermaid
 
 - **Clean layouts.** Orthogonal routes, spread ports, and labels that never sit on a box. Layout warnings fail loudly instead of drawing a mess.
@@ -46,7 +53,7 @@ Set `meta.style` in the diagram, or pass `--style expressive` to `render`. Both 
 In pi:
 
 ```sh
-pi install git:github.com/evoclock/pi-bowerbird
+pi install npm:@evoclock/pi-bowerbird
 ```
 
 PNG and WebP export use `rsvg-convert` and `cwebp`:
