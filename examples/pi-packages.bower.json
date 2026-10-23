@@ -1,0 +1,41 @@
+{
+  "schema": "bowerbird/v1",
+  "meta": {
+    "title": "How a pi package loads",
+    "kicker": "example · concept map",
+    "subtitle": "No status tracking and no motion: bowerbird as a plain diagramming tool.",
+    "animation": "static",
+    "grid": { "col": 320, "row": 175, "gap": [70, 44] }
+  },
+  "categories": {
+    "slate": { "label": "Pi host" },
+    "sage": { "label": "Package" },
+    "peach": { "label": "Resources" }
+  },
+  "zones": [
+    { "id": "host", "title": "Pi host", "kicker": "install + config", "category": "slate" },
+    { "id": "pkg", "title": "Package", "kicker": "npm, git, or local", "category": "sage" },
+    { "id": "res", "title": "Loaded resources", "kicker": "per session", "category": "peach" }
+  ],
+  "nodes": [
+    { "id": "install", "zone": "host", "at": [0, 0], "type": "command", "title": "pi install", "lines": ["npm: · git: · ./path", "-l writes .pi/settings"], "category": "slate",
+      "details": "Installs a package and records it in settings. Versioned npm specs and git tags stay pinned on update." },
+    { "id": "settings", "zone": "host", "at": [0, 1], "type": "config", "title": "settings.json", "lines": ["packages[] with filters", "!glob, +path, -path"], "category": "slate",
+      "details": "Filters only narrow what the manifest declares; they cannot expose undeclared resources." },
+    { "id": "manifest", "zone": "pkg", "at": [1, 0], "type": "package.json", "title": "pi manifest", "lines": ["extensions, skills", "prompts, themes"], "category": "sage",
+      "details": "Without a `pi` key, pi falls back to conventional directories.\n\n- [pi.dev package docs](https://pi.dev/docs/latest/packages)" },
+    { "id": "peers", "zone": "pkg", "at": [1, 1], "type": "dependencies", "title": "Peer deps", "lines": ["host packages as \"*\"", "never bundled"], "category": "sage" },
+    { "id": "ext", "zone": "res", "at": [2, 0], "type": "extension", "title": "Extensions", "lines": ["tools, commands", "event hooks"], "category": "peach" },
+    { "id": "skills", "zone": "res", "at": [2, 1], "type": "skill", "title": "Skills", "lines": ["SKILL.md on demand"], "category": "peach" },
+    { "id": "themes", "zone": "res", "at": [2, 2], "type": "theme", "title": "Prompts + themes", "lines": ["templates, JSON themes"], "category": "peach" }
+  ],
+  "edges": [
+    { "from": "install", "to": "settings", "label": "records" },
+    { "from": "install", "to": "manifest", "label": "reads" },
+    { "from": "settings", "to": "manifest", "kind": "control", "label": "filters" },
+    { "from": "manifest", "to": "ext" },
+    { "from": "manifest", "to": "skills" },
+    { "from": "manifest", "to": "themes" },
+    { "from": "peers", "to": "ext", "kind": "control", "label": "host provides" }
+  ]
+}

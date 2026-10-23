@@ -1,0 +1,282 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1581 1487" width="1581" height="1487" role="img" aria-labelledby="bb-t">
+<title id="bb-t">Bowerbird architecture</title>
+<style>
+text{font-family:Geist,"Geist Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-variant-numeric:tabular-nums}
+.bb-title{font-size:36px;font-weight:300;letter-spacing:-.015em}
+.bb-subtitle{font-size:14px;font-weight:400}
+.bb-kicker-top{font-size:10.5px;font-weight:500;letter-spacing:2.6px}
+.bb-meta{font-size:11px;font-weight:400;letter-spacing:.03em}
+.bb-meter-big{font-size:42px;font-weight:300;letter-spacing:-.02em}
+.bb-meter-unit{font-size:17px;font-weight:300}
+.bb-meter-track{stroke-width:1;fill:none}
+.bb-meter-solid,.bb-meter-part{stroke-width:3;fill:none}
+.bb-meter-part{stroke-dasharray:2 3}
+.bb-rule{stroke-width:1;fill:none}
+.bb-zone{stroke-width:1}
+.bb-zone-kicker{font-size:10.5px;font-weight:500;letter-spacing:2.6px}
+.bb-zone-title{font-size:21px;font-weight:400;letter-spacing:-.005em}
+.bb-zone-sub{font-size:11.5px}
+.bb-node-box{stroke-width:1}
+.bb-node.status-planned .bb-node-box{stroke-dasharray:4 4}
+.bb-kicker{font-size:10.5px;font-weight:500;letter-spacing:2.4px}
+.bb-node-title{font-size:17px;font-weight:500;letter-spacing:-.005em}
+.bb-copy{font-size:13.5px;font-weight:400}
+.bb-hint{font-size:11.5px;font-weight:400;letter-spacing:.02em}
+.bb-status-text{font-size:9.5px;font-weight:600;letter-spacing:1.9px}
+.bb-dot{stroke-width:1.1;fill:none}
+.bb-edge{fill:none;stroke-width:1.25;stroke-linejoin:round;stroke-linecap:round}
+.bb-edge.control{stroke-dasharray:3 4}
+.bb-edge.failure{stroke-dasharray:.1 4.5;stroke-width:1.8}
+.bb-edge.is-planned{opacity:.4}
+.bb-label{font-size:11.5px;font-weight:500;letter-spacing:.02em;paint-order:stroke;stroke-width:6px;stroke-linejoin:round}
+.bb-legend-text{font-size:12px;font-weight:400}
+.bb-finding-text{font-size:9px;font-weight:600;letter-spacing:1.6px}
+.iso-face{stroke-width:.8;stroke-linejoin:round}
+.bb-node.status-planned .iso-face{fill:none;stroke-dasharray:4 4;stroke-width:1}
+.iso-hatch line{stroke-width:.8;opacity:.45}
+.iso-label-knockout{paint-order:stroke;stroke-width:6px;stroke-linejoin:round}
+.bb-canvas{fill:#1a1816}
+.bb-title,.bb-zone-title,.bb-node-title,.bb-meter-big,.bb-meter-unit{fill:#ead1b5}
+.bb-subtitle,.bb-copy,.bb-hint,.bb-legend-text,.bb-meta,.bb-kicker,.bb-zone-kicker,.bb-kicker-top,.bb-zone-sub{fill:#b09080}
+.bb-rule,.bb-meter-track{stroke:#35302b}
+.bb-meter-solid{stroke:#ead1b5}
+.bb-meter-part{stroke:#b09080}
+.bb-zone{fill:#1f1c19;stroke:#35302b}
+.bb-node-box{fill:#272421;stroke:#35302b}
+.bb-node.status-planned .bb-node-box{fill:none;stroke:#4c443c}
+.bb-node.status-planned .bb-node-title{fill:#b09080}
+.bb-status-text{fill:#b09080}
+.bb-status.is-implemented .bb-status-text{fill:#b09080}
+.bb-dot{stroke:#b09080}
+.bb-dot-fill{fill:#b09080}
+.bb-status.is-implemented .bb-dot{stroke:#ead1b5}
+.bb-status.is-implemented .bb-dot-fill{fill:#ead1b5}
+.bb-edge.data{stroke:#958574}
+.bb-edge.control{stroke:#6b737e}
+.bb-edge.failure{stroke:#c27a5c}
+.bb-arrow.data{fill:#958574}
+.bb-arrow.control{fill:#6b737e}
+.bb-arrow.failure{fill:#c27a5c}
+.bb-label,.iso-label-knockout{stroke:#1a1816}
+.bb-label.data{fill:#b09080}
+.bb-label.control{fill:#a4a8ae}
+.bb-label.failure{fill:#c27a5c}
+.bb-flow{stroke:#ead1b5;stroke-opacity:.55}
+.bb-finding-text,.bb-finding-inline{fill:#c27a5c}
+.bb-node.has-finding .bb-node-box{stroke:#c27a5c}
+.bb-pseudo-fill{fill:#ead1b5}
+.bb-pseudo-ring{fill:#1a1816;stroke:#ead1b5;stroke-width:1.3}
+.bb-pseudo-choice{fill:#272421}
+.bb-node.is-selected .bb-node-box,.bb-node[tabindex]:focus .bb-node-box{stroke:#ead1b5}
+.cat-sage .bb-mark,.bb-mark.cat-sage{fill:#7fbd9e}
+.cat-sage .bb-kicker,.cat-sage .bb-zone-kicker{fill:#89b498}
+.cat-sage .bb-node-box{fill:#353c35;stroke:#475b4e}
+.cat-sage.status-planned .bb-node-box{fill:none;stroke:#476253}
+.bb-zone.cat-sage{fill:#212420;stroke:#344339}
+.cat-sage .iso-roof{fill:#8fb7a3;stroke:#48705c}
+.cat-sage .iso-left{fill:#70a48a;stroke:#48705c}
+.cat-sage .iso-right{fill:#5a8c73;stroke:#48705c}
+.cat-sage.status-planned .iso-face{stroke:#79c39e}
+.cat-slate .bb-mark,.bb-mark.cat-slate{fill:#7a92ae}
+.cat-slate .bb-kicker,.cat-slate .bb-zone-kicker{fill:#8592a5}
+.cat-slate .bb-node-box{fill:#343638;stroke:#454c54}
+.cat-slate.status-planned .bb-node-box{fill:none;stroke:#454f5a}
+.bb-zone.cat-slate{fill:#212121;stroke:#33383e}
+.cat-slate .iso-roof{fill:#96a2b0;stroke:#4f5b69}
+.cat-slate .iso-left{fill:#79889a;stroke:#4f5b69}
+.cat-slate .iso-right{fill:#637183;stroke:#4f5b69}
+.cat-slate.status-planned .iso-face{stroke:#617082}
+.cat-peach .bb-mark,.bb-mark.cat-peach{fill:#ca9a7d}
+.cat-peach .bb-kicker,.cat-peach .bb-zone-kicker{fill:#c5987e}
+.cat-peach .bb-node-box{fill:#413730;stroke:#624e42}
+.cat-peach.status-planned .bb-node-box{fill:none;stroke:#695344}
+.bb-zone.cat-peach{fill:#26211d;stroke:#483a31}
+.cat-peach .iso-roof{fill:#b79e8f;stroke:#705748}
+.cat-peach .iso-left{fill:#a48370;stroke:#705748}
+.cat-peach .iso-right{fill:#8c6c5a;stroke:#705748}
+.cat-peach.status-planned .iso-face{stroke:#ee9b69}
+.cat-mustard .bb-mark,.bb-mark.cat-mustard{fill:#c2aa6a}
+.cat-mustard .bb-kicker,.cat-mustard .bb-zone-kicker{fill:#bea56e}
+.cat-mustard .bb-node-box{fill:#40392d;stroke:#5f543b}
+.cat-mustard.status-planned .bb-node-box{fill:none;stroke:#665a3c}
+.bb-zone.cat-mustard{fill:#26221c;stroke:#463e2c}
+.cat-mustard .iso-roof{fill:#b7ad8f;stroke:#706548}
+.cat-mustard .iso-left{fill:#a49670;stroke:#706548}
+.cat-mustard .iso-right{fill:#8c7e5a;stroke:#706548}
+.cat-mustard.status-planned .iso-face{stroke:#ceb05e}
+.cat-mauve .bb-mark,.bb-mark.cat-mauve{fill:#ae7a9d}
+.cat-mauve .bb-kicker,.cat-mauve .bb-zone-kicker{fill:#ae7e97}
+.cat-mauve .bb-node-box{fill:#3d3235;stroke:#58434e}
+.cat-mauve.status-planned .bb-node-box{fill:none;stroke:#5d4453}
+.bb-zone.cat-mauve{fill:#241f1f;stroke:#403139}
+.cat-mauve .iso-roof{fill:#b196a8;stroke:#694e61}
+.cat-mauve .iso-left{fill:#9b7890;stroke:#694e61}
+.cat-mauve .iso-right{fill:#846279;stroke:#694e61}
+.cat-mauve.status-planned .iso-face{stroke:#76536b}
+.iso-shadow{fill:#000000;fill-opacity:0.32}
+.iso-hatch line{stroke:#1a1816}
+.iso-tag-bg,.iso-label-bg{fill:#1a1816;fill-opacity:.9}
+.bb-label.plain{stroke:none}
+.bb-node:not([class*=cat-]) .iso-face{fill:#272421;stroke:#35302b}
+.bb-flow{fill:none;stroke-width:2.4;stroke-linecap:round;stroke-dasharray:.1 28;animation:bb-flow 2.6s linear infinite}
+@keyframes bb-flow{to{stroke-dashoffset:-28.1}}
+@media (prefers-reduced-motion:reduce){.bb-flow{animation:none;opacity:0}}
+</style>
+<defs><marker id="bb-arrow-data" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path class="bb-arrow data" d="M 0 1 L 10 5 L 0 9 z"/></marker><marker id="bb-arrow-control" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path class="bb-arrow control" d="M 0 1 L 10 5 L 0 9 z"/></marker><marker id="bb-arrow-failure" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path class="bb-arrow failure" d="M 0 1 L 10 5 L 0 9 z"/></marker></defs>
+<rect class="bb-canvas" x="0" y="0" width="1581" height="1487"/>
+<path class="bb-rule" d="M 48 48 H 70"/>
+<text class="bb-kicker-top" x="82" y="52">PI-BOWERBIRD · SYSTEM MAP</text>
+<text class="bb-title" x="48" y="100">Bowerbird architecture</text>
+<text class="bb-subtitle" x="48" y="130">One JSON source renders to interactive HTML, theme-aware SVG, and PNG/WebP rasters.</text>
+<g class="bb-meter" aria-label="78% built"><text class="bb-kicker-top" x="1533" y="52" text-anchor="end">COMPLETION</text><text x="1533" y="96" text-anchor="end"><tspan class="bb-meter-big">78</tspan><tspan class="bb-meter-unit" dx="3">%</tspan></text><path class="bb-meter-track" d="M 1313 110 H 1533"/><path class="bb-meter-solid" d="M 1313 110 H 1484.1"/><path class="bb-meter-part" d="M 1484.1 110 H 1508.6"/><text class="bb-meta" x="1533" y="132" text-anchor="end">7 built · 1 partial · 1 planned</text></g>
+<g class="bb-zone-group cat-sage"><polygon class="bb-zone cat-sage" points="787.6,246 1376.1,585.8 1150.9,715.8 562.4,376"/>
+</g>
+<g class="bb-zone-group cat-slate"><polygon class="bb-zone cat-slate" points="530.4,394.5 1454.5,928.1 1229.4,1058.1 305.2,524.5"/>
+</g>
+<g class="bb-zone-group cat-peach"><polygon class="bb-zone cat-peach" points="273.2,543 1533,1270.3 1307.8,1400.3 48,673"/>
+</g>
+<polygon class="iso-shadow" points="740.7,305 962.4,433 827.3,511 605.6,383"/>
+<polygon class="iso-shadow" points="483.5,453.5 705.2,581.5 570.1,659.5 348.4,531.5"/>
+<polygon class="iso-shadow" points="1076.3,498.8 1298,626.8 1162.9,704.8 941.2,576.8"/>
+<polygon class="iso-shadow" points="226.3,602 448,730 312.9,808 91.2,680"/>
+<polygon class="iso-shadow" points="819.1,647.3 1040.8,775.3 905.7,853.3 684,725.3"/>
+<polygon class="iso-shadow" points="561.9,795.8 783.6,923.8 648.5,1001.8 426.8,873.8"/>
+<polygon class="iso-shadow" points="1154.8,841.1 1376.5,969.1 1241.4,1047.1 1019.7,919.1"/>
+<polygon class="iso-shadow" points="897.6,989.6 1119.3,1117.6 984.2,1195.6 762.5,1067.6"/>
+<g class="bb-node map-item cat-sage status-implemented" data-id="agent" data-traces="render">
+<polygon class="iso-face iso-left" points="593.6,338 815.3,466 815.3,504 593.6,376"/>
+<polygon class="iso-face iso-right" points="950.4,388 815.3,466 815.3,504 950.4,426"/>
+<polygon class="iso-face iso-roof" points="728.7,260 950.4,388 815.3,466 593.6,338"/>
+</g>
+<g class="bb-node map-item cat-slate status-implemented" data-id="model" data-traces="render sync">
+<polygon class="iso-face iso-left" points="336.4,486.5 558.1,614.5 558.1,652.5 336.4,524.5"/>
+<polygon class="iso-face iso-right" points="693.2,536.5 558.1,614.5 558.1,652.5 693.2,574.5"/>
+<polygon class="iso-face iso-roof" points="471.5,408.5 693.2,536.5 558.1,614.5 336.4,486.5"/>
+</g>
+<g class="bb-node map-item cat-sage status-implemented" data-id="source" data-traces="render sync">
+<polygon class="iso-face iso-left" points="929.2,531.8 1150.9,659.8 1150.9,697.8 929.2,569.8"/>
+<polygon class="iso-face iso-right" points="1286,581.8 1150.9,659.8 1150.9,697.8 1286,619.8"/>
+<polygon class="iso-face iso-roof" points="1064.3,453.8 1286,581.8 1150.9,659.8 929.2,531.8"/>
+</g>
+<g class="bb-node map-item cat-peach status-implemented" data-id="html" data-traces="render">
+<polygon class="iso-face iso-left" points="79.2,635 300.9,763 300.9,801 79.2,673"/>
+<polygon class="iso-face iso-right" points="436,685 300.9,763 300.9,801 436,723"/>
+<polygon class="iso-face iso-roof" points="214.3,557 436,685 300.9,763 79.2,635"/>
+</g>
+<g class="bb-node map-item cat-slate status-implemented" data-id="layout" data-traces="render">
+<polygon class="iso-face iso-left" points="672,680.3 893.7,808.3 893.7,846.3 672,718.3"/>
+<polygon class="iso-face iso-right" points="1028.8,730.3 893.7,808.3 893.7,846.3 1028.8,768.3"/>
+<polygon class="iso-face iso-roof" points="807.1,602.3 1028.8,730.3 893.7,808.3 672,680.3"/>
+</g>
+<g class="bb-node map-item cat-peach status-implemented" data-id="svg" data-traces="render">
+<polygon class="iso-face iso-left" points="414.8,828.8 636.5,956.8 636.5,994.8 414.8,866.8"/>
+<polygon class="iso-face iso-right" points="771.6,878.8 636.5,956.8 636.5,994.8 771.6,916.8"/>
+<polygon class="iso-face iso-roof" points="549.9,750.8 771.6,878.8 636.5,956.8 414.8,828.8"/>
+</g>
+<g class="bb-node map-item cat-mauve status-partial" data-id="status" data-traces="sync">
+<polygon class="iso-face iso-left" points="1007.7,874.1 1229.4,1002.1 1229.4,1040.1 1007.7,912.1"/>
+<polygon class="iso-face iso-right" points="1364.5,924.1 1229.4,1002.1 1229.4,1040.1 1364.5,962.1"/>
+<polygon class="iso-face iso-roof" points="1142.8,796.1 1364.5,924.1 1229.4,1002.1 1007.7,874.1"/>
+<clipPath id="clip-status"><polygon class="" points="1142.8,796.1 1364.5,924.1 1229.4,1002.1 1007.7,874.1"/></clipPath><g class="iso-hatch" clip-path="url(#clip-status)"><line x1="801.7" y1="1002.1" x2="1007.7" y2="796.1"/><line x1="810.7" y1="1002.1" x2="1016.7" y2="796.1"/><line x1="819.7" y1="1002.1" x2="1025.7" y2="796.1"/><line x1="828.7" y1="1002.1" x2="1034.7" y2="796.1"/><line x1="837.7" y1="1002.1" x2="1043.7" y2="796.1"/><line x1="846.7" y1="1002.1" x2="1052.7" y2="796.1"/><line x1="855.7" y1="1002.1" x2="1061.7" y2="796.1"/><line x1="864.7" y1="1002.1" x2="1070.7" y2="796.1"/><line x1="873.7" y1="1002.1" x2="1079.7" y2="796.1"/><line x1="882.7" y1="1002.1" x2="1088.7" y2="796.1"/><line x1="891.7" y1="1002.1" x2="1097.7" y2="796.1"/><line x1="900.7" y1="1002.1" x2="1106.7" y2="796.1"/><line x1="909.7" y1="1002.1" x2="1115.7" y2="796.1"/><line x1="918.7" y1="1002.1" x2="1124.7" y2="796.1"/><line x1="927.7" y1="1002.1" x2="1133.7" y2="796.1"/><line x1="936.7" y1="1002.1" x2="1142.7" y2="796.1"/><line x1="945.7" y1="1002.1" x2="1151.7" y2="796.1"/><line x1="954.7" y1="1002.1" x2="1160.7" y2="796.1"/><line x1="963.7" y1="1002.1" x2="1169.7" y2="796.1"/><line x1="972.7" y1="1002.1" x2="1178.7" y2="796.1"/><line x1="981.7" y1="1002.1" x2="1187.7" y2="796.1"/><line x1="990.7" y1="1002.1" x2="1196.7" y2="796.1"/><line x1="999.7" y1="1002.1" x2="1205.7" y2="796.1"/><line x1="1008.7" y1="1002.1" x2="1214.7" y2="796.1"/><line x1="1017.7" y1="1002.1" x2="1223.7" y2="796.1"/><line x1="1026.7" y1="1002.1" x2="1232.7" y2="796.1"/><line x1="1035.7" y1="1002.1" x2="1241.7" y2="796.1"/><line x1="1044.7" y1="1002.1" x2="1250.7" y2="796.1"/><line x1="1053.7" y1="1002.1" x2="1259.7" y2="796.1"/><line x1="1062.7" y1="1002.1" x2="1268.7" y2="796.1"/><line x1="1071.7" y1="1002.1" x2="1277.7" y2="796.1"/><line x1="1080.7" y1="1002.1" x2="1286.7" y2="796.1"/><line x1="1089.7" y1="1002.1" x2="1295.7" y2="796.1"/><line x1="1098.7" y1="1002.1" x2="1304.7" y2="796.1"/><line x1="1107.7" y1="1002.1" x2="1313.7" y2="796.1"/><line x1="1116.7" y1="1002.1" x2="1322.7" y2="796.1"/><line x1="1125.7" y1="1002.1" x2="1331.7" y2="796.1"/><line x1="1134.7" y1="1002.1" x2="1340.7" y2="796.1"/><line x1="1143.7" y1="1002.1" x2="1349.7" y2="796.1"/><line x1="1152.7" y1="1002.1" x2="1358.7" y2="796.1"/><line x1="1161.7" y1="1002.1" x2="1367.7" y2="796.1"/><line x1="1170.7" y1="1002.1" x2="1376.7" y2="796.1"/><line x1="1179.7" y1="1002.1" x2="1385.7" y2="796.1"/><line x1="1188.7" y1="1002.1" x2="1394.7" y2="796.1"/><line x1="1197.7" y1="1002.1" x2="1403.7" y2="796.1"/><line x1="1206.7" y1="1002.1" x2="1412.7" y2="796.1"/><line x1="1215.7" y1="1002.1" x2="1421.7" y2="796.1"/><line x1="1224.7" y1="1002.1" x2="1430.7" y2="796.1"/><line x1="1233.7" y1="1002.1" x2="1439.7" y2="796.1"/><line x1="1242.7" y1="1002.1" x2="1448.7" y2="796.1"/><line x1="1251.7" y1="1002.1" x2="1457.7" y2="796.1"/><line x1="1260.7" y1="1002.1" x2="1466.7" y2="796.1"/><line x1="1269.7" y1="1002.1" x2="1475.7" y2="796.1"/><line x1="1278.7" y1="1002.1" x2="1484.7" y2="796.1"/><line x1="1287.7" y1="1002.1" x2="1493.7" y2="796.1"/><line x1="1296.7" y1="1002.1" x2="1502.7" y2="796.1"/><line x1="1305.7" y1="1002.1" x2="1511.7" y2="796.1"/><line x1="1314.7" y1="1002.1" x2="1520.7" y2="796.1"/><line x1="1323.7" y1="1002.1" x2="1529.7" y2="796.1"/><line x1="1332.7" y1="1002.1" x2="1538.7" y2="796.1"/><line x1="1341.7" y1="1002.1" x2="1547.7" y2="796.1"/><line x1="1350.7" y1="1002.1" x2="1556.7" y2="796.1"/><line x1="1359.7" y1="1002.1" x2="1565.7" y2="796.1"/></g>
+</g>
+<g class="bb-node map-item cat-mustard status-implemented" data-id="raster" data-traces="render">
+<polygon class="iso-face iso-left" points="750.5,1022.6 972.2,1150.6 972.2,1188.6 750.5,1060.6"/>
+<polygon class="iso-face iso-right" points="1107.3,1072.6 972.2,1150.6 972.2,1188.6 1107.3,1110.6"/>
+<polygon class="iso-face iso-roof" points="885.6,944.6 1107.3,1072.6 972.2,1150.6 750.5,1022.6"/>
+</g>
+<g class="bb-node map-item cat-mustard status-planned" data-id="pages">
+<polygon class="iso-face iso-left" points="1086.1,1216.3 1307.8,1344.3 1307.8,1382.3 1086.1,1254.3"/>
+<polygon class="iso-face iso-right" points="1442.9,1266.3 1307.8,1344.3 1307.8,1382.3 1442.9,1304.3"/>
+<polygon class="iso-face iso-roof" points="1221.2,1138.3 1442.9,1266.3 1307.8,1344.3 1086.1,1216.3"/>
+</g>
+<g class="bb-edges">
+<path class="bb-edge data map-item" d="M 882.8 427 L 978.6 482.3 Q 982.9 484.8 987.3 482.3 L 998.9 475.6 Q 1003.2 473.1 1007.5 475.6 L 1017 481.1" marker-end="url(#bb-arrow-data)" data-traces="render"/>
+<path class="bb-flow map-item" d="M 882.8 427 L 978.6 482.3 Q 982.9 484.8 987.3 482.3 L 998.9 475.6 Q 1003.2 473.1 1007.5 475.6 L 1017 481.1" data-traces="render"/>
+<path class="bb-edge data map-item" d="M 976.5 504.5 L 880.8 449.2 Q 876.4 446.7 872.1 449.2 L 670.8 565.4 Q 666.5 567.9 662.2 565.4 L 652.7 559.9" marker-end="url(#bb-arrow-data)" data-traces="render sync"/>
+<path class="bb-flow map-item" d="M 976.5 504.5 L 880.8 449.2 Q 876.4 446.7 872.1 449.2 L 670.8 565.4 Q 666.5 567.9 662.2 565.4 L 652.7 559.9" data-traces="render sync"/>
+<path class="bb-edge data map-item" d="M 625.6 575.5 L 721.4 630.8 Q 725.7 633.3 730 630.8 L 741.7 624.1 Q 746 621.6 750.3 624.1 L 759.8 629.6" marker-end="url(#bb-arrow-data)" data-traces="render"/>
+<path class="bb-flow map-item" d="M 625.6 575.5 L 721.4 630.8 Q 725.7 633.3 730 630.8 L 741.7 624.1 Q 746 621.6 750.3 624.1 L 759.8 629.6" data-traces="render"/>
+<path class="bb-edge control map-item" d="M 598.6 591.1 L 696.1 647.4 Q 700.4 649.9 696.1 652.4 L 652.1 677.8 Q 647.8 680.3 652.1 682.8 L 977.3 870.6 Q 981.7 873.1 986 870.6 L 1036.8 841.3 Q 1041.1 838.8 1045.4 841.3 L 1054.9 846.8" marker-end="url(#bb-arrow-control)" data-traces="sync"/>
+<path class="bb-flow map-item" d="M 598.6 591.1 L 696.1 647.4 Q 700.4 649.9 696.1 652.4 L 652.1 677.8 Q 647.8 680.3 652.1 682.8 L 977.3 870.6 Q 981.7 873.1 986 870.6 L 1036.8 841.3 Q 1041.1 838.8 1045.4 841.3 L 1054.9 846.8" data-traces="sync"/>
+<path class="bb-edge control map-item" d="M 1095.5 823.4 L 999.7 768.1 Q 995.4 765.6 999.7 763.1 L 1228 631.3 Q 1232.3 628.8 1228 626.3 L 1218.5 620.8" marker-end="url(#bb-arrow-control)" data-traces="sync"/>
+<path class="bb-flow map-item" d="M 1095.5 823.4 L 999.7 768.1 Q 995.4 765.6 999.7 763.1 L 1228 631.3 Q 1232.3 628.8 1228 626.3 L 1218.5 620.8" data-traces="sync"/>
+<path class="bb-edge data map-item" d="M 719.3 653 L 623.6 597.7 Q 619.2 595.2 614.9 597.7 L 386.6 729.5 Q 382.3 732 378 729.5 L 368.4 724" marker-end="url(#bb-arrow-data)" data-traces="render"/>
+<path class="bb-flow map-item" d="M 719.3 653 L 623.6 597.7 Q 619.2 595.2 614.9 597.7 L 386.6 729.5 Q 382.3 732 378 729.5 L 368.4 724" data-traces="render"/>
+<path class="bb-edge data map-item" d="M 782.9 744.3 L 660.8 814.8" marker-end="url(#bb-arrow-data)" data-traces="render"/>
+<path class="bb-flow map-item" d="M 782.9 744.3 L 660.8 814.8" data-traces="render"/>
+<path class="bb-edge data map-item" d="M 704.1 917.8 L 818 983.6" marker-end="url(#bb-arrow-data)" data-traces="render"/>
+<path class="bb-flow map-item" d="M 704.1 917.8 L 818 983.6" data-traces="render"/>
+<path class="bb-edge failure is-planned map-item" d="M 1039.7 1111.6 L 1153.6 1177.3" marker-end="url(#bb-arrow-failure)"/>
+<g class="bb-edge-label map-item" data-traces="render"><rect class="iso-label-bg" x="905.5" y="447.4" width="54.8" height="17" rx="3"/><text class="bb-label data plain" x="932.9" y="459.5" text-anchor="middle">writes</text></g>
+<g class="bb-edge-label map-item" data-traces="render sync"><rect class="iso-label-bg" x="747.7" y="498.8" width="47.7" height="17" rx="3"/><text class="bb-label data plain" x="771.5" y="510.9" text-anchor="middle">parse</text></g>
+<g class="bb-edge-label map-item" data-traces="sync"><rect class="iso-label-bg" x="876.8" y="826" width="76.2" height="17" rx="3"/><text class="bb-label control plain" x="914.9" y="838.1" text-anchor="middle">on commit</text></g>
+<g class="bb-edge-label map-item" data-traces="sync"><rect class="iso-label-bg" x="1086.5" y="688.7" width="54.8" height="17" rx="3"/><text class="bb-label control plain" x="1113.9" y="700.8" text-anchor="middle">status</text></g>
+<g class="bb-edge-label map-item" data-traces="render"><rect class="iso-label-bg" x="694.4" y="771" width="54.8" height="17" rx="3"/><text class="bb-label data plain" x="721.8" y="783.1" text-anchor="middle">routes</text></g>
+<g class="bb-edge-label map-item" data-traces="render"><rect class="iso-label-bg" x="712.3" y="942.2" width="97.6" height="17" rx="3"/><text class="bb-label data plain" x="761" y="954.3" text-anchor="middle">static frame</text></g>
+<g class="bb-edge-label map-item"><rect class="iso-label-bg" x="1065.7" y="1135.9" width="61.9" height="17" rx="3"/><text class="bb-label failure plain" x="1096.7" y="1148" text-anchor="middle">not yet</text></g>
+</g>
+<g class="iso-tag map-item cat-sage" data-for="agent" data-traces="render" pointer-events="none">
+<rect class="iso-tag-bg" x="679.9" y="337" width="184.1" height="42" rx="3"/>
+<circle class="bb-mark" cx="699.2" cy="349.5" r="3"/>
+<text class="bb-kicker" x="772" y="353" text-anchor="middle">PI SKILL · BUILT</text>
+<text class="bb-node-title" x="772" y="372" text-anchor="middle">Agent authoring</text>
+</g>
+<g class="iso-tag map-item cat-slate" data-for="model" data-traces="render sync" pointer-events="none">
+<rect class="iso-tag-bg" x="417.5" y="485.5" width="194.6" height="42" rx="3"/>
+<circle class="bb-mark" cx="450.1" cy="498" r="3"/>
+<text class="bb-kicker" x="514.8" y="501.5" text-anchor="middle">MODULE · BUILT</text>
+<text class="bb-node-title" x="514.8" y="520.5" text-anchor="middle">Model + validate</text>
+</g>
+<g class="iso-tag map-item cat-sage" data-for="source" data-traces="render sync" pointer-events="none">
+<rect class="iso-tag-bg" x="1020.9" y="530.8" width="173.6" height="42" rx="3"/>
+<circle class="bb-mark" cx="1051" cy="543.3" r="3"/>
+<text class="bb-kicker" x="1107.6" y="546.8" text-anchor="middle">JSON · BUILT</text>
+<text class="bb-node-title" x="1107.6" y="565.8" text-anchor="middle">Diagram source</text>
+</g>
+<g class="iso-tag map-item cat-peach" data-for="html" data-traces="render" pointer-events="none">
+<rect class="iso-tag-bg" x="160.3" y="634" width="194.6" height="42" rx="3"/>
+<circle class="bb-mark" cx="184.8" cy="646.5" r="3"/>
+<text class="bb-kicker" x="257.6" y="650" text-anchor="middle">RENDERER · BUILT</text>
+<text class="bb-node-title" x="257.6" y="669" text-anchor="middle">Interactive HTML</text>
+</g>
+<g class="iso-tag map-item cat-slate" data-for="layout" data-traces="render" pointer-events="none">
+<rect class="iso-tag-bg" x="768.9" y="679.3" width="163" height="42" rx="3"/>
+<circle class="bb-mark" cx="785.7" cy="691.8" r="3"/>
+<text class="bb-kicker" x="850.4" y="695.3" text-anchor="middle">MODULE · BUILT</text>
+<text class="bb-node-title" x="850.4" y="714.3" text-anchor="middle">Route + place</text>
+</g>
+<g class="iso-tag map-item cat-peach" data-for="svg" data-traces="render" pointer-events="none">
+<rect class="iso-tag-bg" x="506.4" y="827.8" width="173.6" height="42" rx="3"/>
+<circle class="bb-mark" cx="520.4" cy="840.3" r="3"/>
+<text class="bb-kicker" x="593.2" y="843.8" text-anchor="middle">RENDERER · BUILT</text>
+<text class="bb-node-title" x="593.2" y="862.8" text-anchor="middle">Flat + iso SVG</text>
+</g>
+<g class="iso-tag map-item cat-mauve" data-for="status" data-traces="sync" pointer-events="none">
+<rect class="iso-tag-bg" x="1108.3" y="873.1" width="155.6" height="42" rx="3"/>
+<circle class="bb-mark" cx="1113.3" cy="885.6" r="3"/>
+<text class="bb-kicker" x="1186.1" y="889.1" text-anchor="middle">MODULE · PARTIAL</text>
+<text class="bb-node-title" x="1186.1" y="908.1" text-anchor="middle">Status sync</text>
+</g>
+<g class="iso-tag map-item cat-mustard" data-for="raster" data-traces="render" pointer-events="none">
+<rect class="iso-tag-bg" x="859.2" y="1021.6" width="139.4" height="42" rx="3"/>
+<circle class="bb-mark" cx="864.2" cy="1034.1" r="3"/>
+<text class="bb-kicker" x="928.9" y="1037.6" text-anchor="middle">EXPORT · BUILT</text>
+<text class="bb-node-title" x="928.9" y="1056.6" text-anchor="middle">PNG + WebP</text>
+</g>
+<g class="iso-tag map-item cat-mustard" data-for="pages" pointer-events="none">
+<rect class="iso-tag-bg" x="1178.6" y="1215.3" width="171.8" height="42" rx="3"/>
+<circle class="bb-mark" cx="1183.6" cy="1227.8" r="3"/>
+<text class="bb-kicker" x="1264.5" y="1231.3" text-anchor="middle">WORKFLOW · PLANNED</text>
+<text class="bb-node-title" x="1264.5" y="1250.3" text-anchor="middle">Pages publish</text>
+</g>
+<g class="bb-zone-group cat-sage">
+<text class="bb-zone-kicker iso-label-knockout" x="787.6" y="212" text-anchor="middle">01 / INPUT</text>
+<text class="bb-zone-title iso-label-knockout" x="787.6" y="234" text-anchor="middle">Author</text></g>
+<g class="bb-zone-group cat-slate">
+<text class="bb-zone-kicker iso-label-knockout" x="530.4" y="360.5" text-anchor="middle">02 / LAYOUT</text>
+<text class="bb-zone-title iso-label-knockout" x="530.4" y="382.5" text-anchor="middle">Engine</text></g>
+<g class="bb-zone-group cat-peach">
+<text class="bb-zone-kicker iso-label-knockout" x="273.2" y="509" text-anchor="middle">03 / OUTPUT</text>
+<text class="bb-zone-title iso-label-knockout" x="273.2" y="531" text-anchor="middle">Render</text></g>
+<g class="bb-legend" aria-label="Legend"><path class="bb-rule" d="M 40 1435 H 1541"/><circle class="bb-mark cat-sage" cx="52" cy="1453" r="4"/><text class="bb-legend-text" x="64" y="1457">Authoring</text><circle class="bb-mark cat-slate" cx="142.925" cy="1453" r="4"/><text class="bb-legend-text" x="154.925" y="1457">Layout</text><circle class="bb-mark cat-peach" cx="214.875" cy="1453" r="4"/><text class="bb-legend-text" x="226.875" y="1457">Rendering</text><circle class="bb-mark cat-mustard" cx="305.8" cy="1453" r="4"/><text class="bb-legend-text" x="317.8" y="1457">Export</text><circle class="bb-mark cat-mauve" cx="377.75" cy="1453" r="4"/><text class="bb-legend-text" x="389.75" y="1457">Status</text><text class="bb-legend-text" x="445.7" y="1457">Built = solid</text><text class="bb-legend-text" x="545.925" y="1457">Partial = hatched roof</text><text class="bb-legend-text" x="703.0749999999999" y="1457">Planned = wireframe</text></g>
+</svg>

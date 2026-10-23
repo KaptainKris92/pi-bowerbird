@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bowerbird gallery</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&display=swap">
+<style>
+:root{color-scheme:dark}
+html[data-theme=dark]{--bg:#1a1816;--panel:#383431;--line:#5c564f;--ink:#ead1b5;--muted:#b09080;--accent:#79c39e}
+html[data-theme=light]{--bg:#fbf9f6;--panel:#fffdfa;--line:#d2cbc4;--ink:#2f2a27;--muted:#716961;--accent:#3d8461}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Geist,ui-sans-serif,system-ui,sans-serif}
+main{width:min(1500px,calc(100% - 32px));margin:0 auto;padding:28px 0 48px}
+h1{margin:0 0 4px;font-size:1.9rem;font-weight:650}
+p{margin:0 0 20px;color:var(--muted)}
+h2{margin:34px 0 12px;font-size:1.15rem}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+figure{margin:0;border:1px solid var(--line);border-radius:9px;background:var(--panel);overflow:hidden}
+figure a{display:block}
+img{display:block;width:100%;height:260px;object-fit:contain;background:var(--bg)}
+figcaption{display:flex;justify-content:space-between;gap:8px;padding:8px 12px;font-size:.82rem;color:var(--muted)}
+figcaption a{color:var(--accent)}
+button{min-height:34px;padding:5px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);font:inherit;cursor:pointer}
+</style>
+</head>
+<body>
+<main>
+<h1>Bowerbird gallery</h1>
+<p>Three example diagrams, each in four modes. Thumbnails are the animated standalone SVGs; open the HTML for the interactive page. <button id="t" type="button">Toggle theme</button></p>
+<div id="g"></div>
+</main>
+<script>
+const examples = [
+  ["bowerbird", "Architecture with status tracking"],
+  ["proposal-to-merge", "Statechart: proposal to merge"],
+  ["pi-packages", "Concept map, static"],
+];
+const modes = [["flat-lr", "Flat · left to right"], ["flat-td", "Flat · top down"], ["iso-lr", "Isometric · left to right"], ["iso-td", "Isometric · top down"]];
+const root = document.documentElement;
+function draw() {
+  const theme = root.dataset.theme;
+  document.getElementById("g").innerHTML = examples.map(([name, title]) => `
+    <h2>${title}</h2><div class="row">${modes.map(([dir, label]) => `
+      <figure><a href="${dir}/${name}.html"><img loading="lazy" alt="${title}, ${label}" src="${dir}/${name}.${theme}.svg"></a>
+      <figcaption><span>${label}</span><span><a href="${dir}/${name}.html">HTML</a> · <a href="${dir}/${name}.${theme}.webp">WebP</a></span></figcaption></figure>`).join("")}</div>`).join("");
+}
+document.getElementById("t").onclick = () => { root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark"; draw(); };
+draw();
+</script>
+</body>
+</html>

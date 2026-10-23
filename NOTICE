@@ -1,0 +1,20 @@
+pi-bowerbird
+Copyright (c) 2026 Julen Gamboa. MIT License.
+
+Design influences (no code copied):
+
+- archify by tt-a1i (MIT), https://github.com/tt-a1i/archify
+  Orthogonal routing with deterministic endpoint spreading, facing-port
+  alignment, label-to-route clearance checks, and the animated flow mode.
+  bowerbird's router (lib/layout.mjs) is an independent implementation.
+
+- system-atlas by inkboard (MIT), https://github.com/inkboard/system-atlas
+  The idea of an isometric system view. bowerbird's isometric renderer
+  (lib/render-iso.mjs) projects its own flat layout and was written
+  independently.
+
+Fonts:
+
+- Geist Sans by Vercel, SIL Open Font License 1.1.
+  Loaded from Google Fonts in HTML output; embedded in SVG output only when
+  the user supplies or has installed the font (bowerbird does not ship it).

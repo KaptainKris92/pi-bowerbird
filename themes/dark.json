@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "dark",
+  "label": "Dark",
+  "mode": "dark",
+  "provenance": "Warm charcoal surfaces with linen ink; categories are a muted natural palette.",
+  "surfaces": {
+    "canvas": "#1a1816",
+    "panel": "#383431",
+    "raised": "#4a4540",
+    "border": "#5c564f",
+    "text": "#ead1b5",
+    "muted": "#b09080"
+  },
+  "edges": {
+    "data": "#c9b49c",
+    "control": "#8d9aab",
+    "failure": "#c27a5c"
+  },
+  "categories": {
+    "sage": "#79c39e",
+    "rust": "#e77843",
+    "peach": "#ee9b69",
+    "mustard": "#ceb05e",
+    "slate": "#617082",
+    "mauve": "#76536b",
+    "teal": "#3f6f70",
+    "olive": "#6e7354"
+  },
+  "rules": [
+    "Colour denotes category, not readiness or success.",
+    "Always pair category colours with text labels."
+  ]
+}

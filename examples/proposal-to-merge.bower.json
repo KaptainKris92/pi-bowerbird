@@ -1,0 +1,47 @@
+{
+  "schema": "bowerbird/v1",
+  "meta": {
+    "title": "Proposal to merge",
+    "kicker": "example · statechart",
+    "subtitle": "How a board card moves from proposal to a merged change. Two faults are seeded; run `bowerbird check` to see them.",
+    "kind": "statechart",
+    "animation": "trace",
+    "grid": { "col": 410, "row": 185, "gap": [190, 64] }
+  },
+  "categories": {
+    "sage": { "label": "Planning" },
+    "rust": { "label": "Workers" },
+    "peach": { "label": "Review" },
+    "mustard": { "label": "Outcome" }
+  },
+  "traces": [
+    { "id": "happy", "label": "Happy path" },
+    { "id": "rework", "label": "Changes requested" }
+  ],
+  "nodes": [
+    { "id": "start", "shape": "initial", "at": [0, 0], "traces": ["happy", "rework"] },
+    { "id": "proposed", "shape": "state", "at": [1, 0], "type": "state", "title": "Proposed", "lines": ["entry / file proposal"], "category": "sage", "traces": ["happy", "rework"],
+      "details": "A card enters as a proposal and waits for consolidation onto the board." },
+    { "id": "ready", "shape": "state", "at": [2, 0], "type": "state", "title": "Ready", "lines": ["on the board"], "category": "sage", "traces": ["happy", "rework"] },
+    { "id": "dispatched", "shape": "state", "at": [3, 0], "type": "state", "title": "Dispatched", "lines": ["entry / lease worker"], "category": "rust", "traces": ["happy", "rework"] },
+    { "id": "review", "shape": "state", "at": [4, 0], "type": "state", "title": "In review", "lines": ["independent reviewer"], "category": "peach", "traces": ["happy", "rework"] },
+    { "id": "merged", "shape": "final", "at": [5, 0], "title": "Merged", "traces": ["happy"] },
+    { "id": "lease", "shape": "state", "at": [3, 1], "type": "state", "title": "Awaiting lease", "lines": ["no free worker"], "category": "rust",
+      "details": "**Seeded fault:** no transition leaves this state. When a worker never frees up, the card is stuck. `bowerbird check` reports it as a dead end." },
+    { "id": "blocked", "shape": "state", "at": [2, 1], "type": "state", "title": "Blocked", "lines": ["missing grant"], "category": "mustard",
+      "details": "**Seeded fault:** both `retry` transitions can fire when a grant arrives, because the second one lost its guard. `bowerbird check` reports it as ambiguous." },
+    { "id": "dropped", "shape": "final", "at": [1, 1], "title": "Dropped" }
+  ],
+  "edges": [
+    { "from": "start", "to": "proposed", "traces": ["happy", "rework"] },
+    { "from": "proposed", "to": "ready", "event": "promote", "guard": "owner approved", "traces": ["happy", "rework"] },
+    { "from": "ready", "to": "dispatched", "event": "dispatch", "guard": "worker free", "traces": ["happy", "rework"] },
+    { "from": "ready", "to": "lease", "event": "dispatch", "guard": "pool full" },
+    { "from": "dispatched", "to": "review", "event": "submit", "action": "open PR", "traces": ["happy", "rework"] },
+    { "from": "review", "to": "merged", "event": "verdict", "guard": "approved", "action": "merge", "traces": ["happy"] },
+    { "from": "review", "to": "ready", "event": "verdict", "guard": "changes", "kind": "control", "traces": ["rework"] },
+    { "from": "dispatched", "to": "blocked", "event": "refuse", "guard": "no grant", "kind": "failure" },
+    { "from": "blocked", "to": "ready", "event": "retry", "guard": "grant given" },
+    { "from": "blocked", "to": "dropped", "event": "retry", "kind": "failure" }
+  ]
+}

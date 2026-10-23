@@ -1,0 +1,25 @@
+#!/bin/sh
+# bowerbird pre-commit: keep diagrams in step with the code being committed.
+# Copy to .git/hooks/pre-commit (or call from your existing hook runner).
+# It never installs anything; bowerbird must already be on PATH or in
+# node_modules/.bin.
+set -eu
+
+BOWERBIRD="${BOWERBIRD:-bowerbird}"
+command -v "$BOWERBIRD" >/dev/null 2>&1 || BOWERBIRD="./node_modules/.bin/bowerbird"
+[ -x "$BOWERBIRD" ] || command -v "$BOWERBIRD" >/dev/null 2>&1 || { echo "bowerbird: not found, skipping diagram sync" >&2; exit 0; }
+
+git ls-files -z -- '*.bower.json' | while IFS= read -r -d '' f 2>/dev/null || [ -n "${f:-}" ]; do
+  [ -n "$f" ] || continue
+  if grep -q '"kind": *"statechart"' "$f"; then
+    "$BOWERBIRD" check "$f" || { echo "bowerbird: statechart findings in $f (fix or commit with --no-verify)" >&2; exit 1; }
+  fi
+  if grep -q '"statusTracking": *true' "$f"; then
+    "$BOWERBIRD" sync "$f"
+  fi
+  "$BOWERBIRD" diff "$f"
+  out="$(dirname "$f")"
+  "$BOWERBIRD" render "$f" --out "$out" --formats html,svg,webp >/dev/null
+  git add -- "$f" "$out"/"$(basename "$f" .bower.json)".*
+  f=""
+done

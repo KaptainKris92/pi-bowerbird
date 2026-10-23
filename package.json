@@ -1,0 +1,55 @@
+{
+  "name": "@evoclock/pi-bowerbird",
+  "version": "0.1.0",
+  "description": "Reproducible architecture diagrams, statecharts, and concept maps for pi: interactive HTML, animated theme-aware SVG for READMEs and MARP, PNG/WebP export, built-vs-planned tracking, and TLA+ from statecharts.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Julen Gamboa",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-coding-agent",
+    "pi-extension",
+    "pi-skill",
+    "diagram",
+    "architecture",
+    "statechart",
+    "svg",
+    "isometric",
+    "tla-plus",
+    "mermaid-alternative"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "bowerbird": "bin/bowerbird.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/",
+    "gallery": "node bin/bowerbird.mjs render examples/bowerbird.bower.json --out examples/gallery"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "extensions/",
+    "skills/",
+    "themes/",
+    "templates/",
+    "examples/*.bower.json",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "pi": {
+    "extensions": ["./extensions/bowerbird.ts"],
+    "skills": ["./skills/bowerbird"]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": { "optional": true }
+  },
+  "optionalDependencies": {}
+}

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "light",
+  "label": "Light",
+  "mode": "light",
+  "provenance": "Warm paper surfaces; categories are the dark theme hues deepened for contrast on a light canvas.",
+  "surfaces": {
+    "canvas": "#fbf9f6",
+    "panel": "#fffdfa",
+    "raised": "#f3f0ec",
+    "border": "#d2cbc4",
+    "text": "#2f2a27",
+    "muted": "#716961"
+  },
+  "edges": {
+    "data": "#6f665e",
+    "control": "#56606d",
+    "failure": "#9b4a36"
+  },
+  "categories": {
+    "sage": "#3d8461",
+    "rust": "#b9531f",
+    "peach": "#b4643a",
+    "mustard": "#8a7026",
+    "slate": "#4f5d6e",
+    "mauve": "#76536b",
+    "teal": "#2f6869",
+    "olive": "#5e6334"
+  },
+  "rules": [
+    "Colour denotes category, not readiness or success.",
+    "Always pair category colours with text labels."
+  ]
+}

@@ -1,0 +1,387 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1186 1088" width="1186" height="1088" role="img" aria-labelledby="bb-t bb-d">
+<title id="bb-t">Bowerbird architecture</title><desc id="bb-d">One JSON source renders to interactive HTML, theme-aware SVG, and PNG/WebP rasters.</desc>
+<style>
+text{font-family:Geist,"Geist Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+.bb-title{font-size:32px;font-weight:700;letter-spacing:-.025em}
+.bb-subtitle{font-size:14px}
+.bb-kicker-top{font-size:11px;font-weight:800;letter-spacing:2px}
+.bb-summary{font-size:11px;font-weight:700;letter-spacing:.08em}
+.bb-meter-big{font-size:34px;font-weight:750;letter-spacing:-.03em}
+.bb-meter-track{stroke-width:1}
+.bb-zone{stroke-width:1.2}
+.bb-zone-accent{fill:none;stroke-width:2.5;stroke-linecap:round}
+.bb-zone-kicker{font-size:10.5px;font-weight:800;letter-spacing:1.6px}
+.bb-zone-title{font-size:20px;font-weight:650;letter-spacing:-.01em}
+.bb-zone-sub{font-size:11.5px}
+.bb-node-box{stroke-width:1.2}
+.bb-node-bevel{fill:none;stroke-width:1}
+.bb-node.status-planned .bb-node-wash,.bb-node.status-planned .bb-node-bevel{display:none}
+.bb-edge-glow{fill:none;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.bb-edge-glow.is-planned{display:none}
+.bb-node.status-planned .bb-node-box{stroke-dasharray:6 4}
+.bb-node.status-planned .bb-band{fill-opacity:.28;stroke-opacity:0}
+.bb-node.status-partial .bb-band-rest{fill-opacity:.28}
+.bb-kicker{font-size:10.5px;font-weight:800;letter-spacing:1.1px}
+.bb-node-title{font-size:17px;font-weight:700}
+.bb-copy{font-size:13.5px}
+.bb-hint{font-size:11.5px;font-weight:600}
+.bb-badge{stroke-width:1}
+.bb-badge-text{font-size:9.5px;font-weight:700;letter-spacing:.4px}
+.bb-dot{stroke-width:1.3;fill:none}
+.bb-edge{fill:none;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.bb-edge.control{stroke-dasharray:6 6}
+.bb-edge.failure{stroke-dasharray:3 5}
+.bb-edge.is-planned{opacity:.45}
+.bb-label-bg{stroke-width:1}
+.bb-label{font-size:11.5px;font-weight:700}
+.bb-legend-text{font-size:11px}
+.bb-canvas{fill:#fbf9f6}
+.bb-title{fill:#2f2a27}
+.bb-subtitle,.bb-zone-sub,.bb-copy{fill:#716961}
+.bb-zone-title{fill:#2f2a27}
+.bb-node-box{fill:#fffdfa;stroke:#d2cbc4}
+.bb-node-title{fill:#2f2a27}
+.bb-hint{fill:#716961}
+.bb-badge{fill:#f3f0ec;stroke:#d2cbc4}
+.bb-badge-text{fill:#2f2a27}
+.bb-edge.data{stroke:#6f665e}
+.bb-edge.control{stroke:#56606d}
+.bb-edge.failure{stroke:#9b4a36}
+.bb-arrow.data{fill:#6f665e}
+.bb-arrow.control{fill:#56606d}
+.bb-arrow.failure{fill:#9b4a36}
+.bb-label-bg{fill:#fbf9f6;stroke:#d2cbc4}
+.bb-label.data{fill:#2f2a27}
+.bb-label.control{fill:#56606d}
+.bb-label.failure{fill:#9b4a36}
+.bb-flow{stroke:#2f2a27}
+.bb-legend-text{fill:#716961}
+.cat-sage .bb-band,.bb-key.cat-sage{fill:#3d8461;stroke:#3d8461}
+.cat-sage .bb-kicker{fill:#3d8461}
+.bb-zone.cat-sage{fill:#f0f2ed;stroke:#93b9a4}
+.cat-sage .bb-zone-kicker{fill:#3d8461}
+.cat-sage.is-selected .bb-node-box,.cat-sage.is-highlighted .bb-node-box{stroke:#3d8461}
+.cat-slate .bb-band,.bb-key.cat-slate{fill:#4f5d6e;stroke:#4f5d6e}
+.cat-slate .bb-kicker{fill:#4f5d6e}
+.bb-zone.cat-slate{fill:#f1f0ee;stroke:#9ca3ab}
+.cat-slate .bb-zone-kicker{fill:#4f5d6e}
+.cat-slate.is-selected .bb-node-box,.cat-slate.is-highlighted .bb-node-box{stroke:#4f5d6e}
+.cat-peach .bb-band,.bb-key.cat-peach{fill:#b4643a;stroke:#b4643a}
+.cat-peach .bb-kicker{fill:#b4643a}
+.bb-zone.cat-peach{fill:#f7f0eb;stroke:#d4a78f}
+.cat-peach .bb-zone-kicker{fill:#b4643a}
+.cat-peach.is-selected .bb-node-box,.cat-peach.is-highlighted .bb-node-box{stroke:#b4643a}
+.cat-mustard .bb-band,.bb-key.cat-mustard{fill:#8a7026;stroke:#8a7026}
+.cat-mustard .bb-kicker{fill:#8a7026}
+.bb-zone.cat-mustard{fill:#f4f1ea;stroke:#bdae84}
+.cat-mustard .bb-zone-kicker{fill:#8a7026}
+.cat-mustard.is-selected .bb-node-box,.cat-mustard.is-highlighted .bb-node-box{stroke:#8a7026}
+.cat-mauve .bb-band,.bb-key.cat-mauve{fill:#76536b;stroke:#76536b}
+.cat-mauve .bb-kicker{fill:#76536b}
+.bb-zone.cat-mauve{fill:#f3efee;stroke:#b29eaa}
+.cat-mauve .bb-zone-kicker{fill:#76536b}
+.cat-mauve.is-selected .bb-node-box,.cat-mauve.is-highlighted .bb-node-box{stroke:#76536b}.bb-dot{stroke:#2f2a27}.bb-dot-fill{fill:#2f2a27}.bb-pseudo-fill{fill:#2f2a27}.bb-pseudo-ring{fill:#fbf9f6;stroke:#2f2a27;stroke-width:1.6}.bb-pseudo-choice{fill:#fffdfa}.bb-finding-bg{fill:#fbf9f6;stroke:#9b4a36;stroke-width:1.2}.bb-finding-text{fill:#9b4a36;font-size:9.5px;font-weight:800;letter-spacing:.4px}.bb-node.has-finding .bb-node-box{stroke:#9b4a36;stroke-width:2}.bb-finding-inline{fill:#9b4a36}.bb-accent{fill:#3d8461}
+.bb-bg-glow-a{fill:url(#bb-light-glow-a)}
+.bb-bg-glow-b{fill:url(#bb-light-glow-b)}
+.bb-bg-dots{fill:url(#bb-light-dots)}
+.bb-node-box{fill:url(#bb-light-card);filter:url(#bb-light-shadow)}
+.bb-node.status-planned .bb-node-box{fill:#fbf9f6;fill-opacity:.55;filter:none}
+.bb-node-bevel{stroke:#fffdfa;stroke-opacity:0}
+.bb-band{filter:none}
+.bb-edge-glow{stroke-opacity:0.08}
+.bb-flow{filter:none}
+.bb-label-bg{fill:#fdfbf8;filter:url(#bb-light-shadow-sm)}
+.bb-meter-hatch{fill:url(#bb-light-hatch)}
+.bb-meter-solid{fill:#2f2a27}
+.bb-meter-track{fill:#efedea;stroke:#d2cbc4}
+.bb-meter-big{fill:#2f2a27}
+.bb-legend-bg{fill:#fdfbf8;stroke:#d2cbc4;stroke-opacity:.6}
+.bb-badge.is-implemented{fill:#2f2a27;stroke:#2f2a27}
+.bb-status.is-implemented .bb-badge-text{fill:#fbf9f6}
+.bb-status.is-implemented .bb-dot-fill{fill:#fbf9f6}
+.bb-zone-floor-grid{stroke:#dad8d5;stroke-opacity:.8}
+.iso-tag-bg{fill:#fffdfa;fill-opacity:.94;stroke:#d2cbc4;stroke-width:1.2;filter:url(#bb-light-shadow-sm)}
+.iso-shadow{fill:#3b2f26;fill-opacity:0.16;filter:url(#bb-light-soft)}
+.cat-sage .bb-node-wash{fill:url(#bb-light-wash-sage)}
+.bb-zone.cat-sage{fill:url(#bb-light-zone-sage)}
+.cat-sage .bb-zone-accent{stroke:#3d8461}
+.cat-slate .bb-node-wash{fill:url(#bb-light-wash-slate)}
+.bb-zone.cat-slate{fill:url(#bb-light-zone-slate)}
+.cat-slate .bb-zone-accent{stroke:#4f5d6e}
+.cat-peach .bb-node-wash{fill:url(#bb-light-wash-peach)}
+.bb-zone.cat-peach{fill:url(#bb-light-zone-peach)}
+.cat-peach .bb-zone-accent{stroke:#b4643a}
+.cat-mustard .bb-node-wash{fill:url(#bb-light-wash-mustard)}
+.bb-zone.cat-mustard{fill:url(#bb-light-zone-mustard)}
+.cat-mustard .bb-zone-accent{stroke:#8a7026}
+.cat-mauve .bb-node-wash{fill:url(#bb-light-wash-mauve)}
+.bb-zone.cat-mauve{fill:url(#bb-light-zone-mauve)}
+.cat-mauve .bb-zone-accent{stroke:#76536b}
+@media (prefers-color-scheme:dark){
+.bb-canvas{fill:#1a1816}
+.bb-title{fill:#ead1b5}
+.bb-subtitle,.bb-zone-sub,.bb-copy{fill:#b09080}
+.bb-zone-title{fill:#ead1b5}
+.bb-node-box{fill:#383431;stroke:#5c564f}
+.bb-node-title{fill:#ead1b5}
+.bb-hint{fill:#b09080}
+.bb-badge{fill:#4a4540;stroke:#5c564f}
+.bb-badge-text{fill:#ead1b5}
+.bb-edge.data{stroke:#c9b49c}
+.bb-edge.control{stroke:#8d9aab}
+.bb-edge.failure{stroke:#c27a5c}
+.bb-arrow.data{fill:#c9b49c}
+.bb-arrow.control{fill:#8d9aab}
+.bb-arrow.failure{fill:#c27a5c}
+.bb-label-bg{fill:#1a1816;stroke:#5c564f}
+.bb-label.data{fill:#ead1b5}
+.bb-label.control{fill:#8d9aab}
+.bb-label.failure{fill:#c27a5c}
+.bb-flow{stroke:#ead1b5}
+.bb-legend-text{fill:#b09080}
+.cat-sage .bb-band,.bb-key.cat-sage{fill:#79c39e;stroke:#79c39e}
+.cat-sage .bb-kicker{fill:#9bc7a5}
+.bb-zone.cat-sage{fill:#212420;stroke:#456553}
+.cat-sage .bb-zone-kicker{fill:#9bc7a5}
+.cat-sage.is-selected .bb-node-box,.cat-sage.is-highlighted .bb-node-box{stroke:#79c39e}
+.cat-slate .bb-band,.bb-key.cat-slate{fill:#617082;stroke:#617082}
+.cat-slate .bb-kicker{fill:#8a8d91}
+.bb-zone.cat-slate{fill:#1f1e1e;stroke:#3a4047}
+.cat-slate .bb-zone-kicker{fill:#8a8d91}
+.cat-slate.is-selected .bb-node-box,.cat-slate.is-highlighted .bb-node-box{stroke:#617082}
+.cat-peach .bb-band,.bb-key.cat-peach{fill:#ee9b69;stroke:#ee9b69}
+.cat-peach .bb-kicker{fill:#edab80}
+.bb-zone.cat-peach{fill:#29211c;stroke:#79533b}
+.cat-peach .bb-zone-kicker{fill:#edab80}
+.cat-peach.is-selected .bb-node-box,.cat-peach.is-highlighted .bb-node-box{stroke:#ee9b69}
+.cat-mustard .bb-band,.bb-key.cat-mustard{fill:#ceb05e;stroke:#ceb05e}
+.cat-mustard .bb-kicker{fill:#d6ba78}
+.bb-zone.cat-mustard{fill:#27231b;stroke:#6b5c36}
+.cat-mustard .bb-zone-kicker{fill:#d6ba78}
+.cat-mustard.is-selected .bb-node-box,.cat-mustard.is-highlighted .bb-node-box{stroke:#ceb05e}
+.cat-mauve .bb-band,.bb-key.cat-mauve{fill:#76536b;stroke:#76536b}
+.cat-mauve .bb-kicker{fill:#997981}
+.bb-zone.cat-mauve{fill:#201c1c;stroke:#43333c}
+.cat-mauve .bb-zone-kicker{fill:#997981}
+.cat-mauve.is-selected .bb-node-box,.cat-mauve.is-highlighted .bb-node-box{stroke:#76536b}.bb-dot{stroke:#ead1b5}.bb-dot-fill{fill:#ead1b5}.bb-pseudo-fill{fill:#ead1b5}.bb-pseudo-ring{fill:#1a1816;stroke:#ead1b5;stroke-width:1.6}.bb-pseudo-choice{fill:#383431}.bb-finding-bg{fill:#1a1816;stroke:#c27a5c;stroke-width:1.2}.bb-finding-text{fill:#c27a5c;font-size:9.5px;font-weight:800;letter-spacing:.4px}.bb-node.has-finding .bb-node-box{stroke:#c27a5c;stroke-width:2}.bb-finding-inline{fill:#c27a5c}.bb-accent{fill:#79c39e}
+.bb-bg-glow-a{fill:url(#bb-dark-glow-a)}
+.bb-bg-glow-b{fill:url(#bb-dark-glow-b)}
+.bb-bg-dots{fill:url(#bb-dark-dots)}
+.bb-node-box{fill:url(#bb-dark-card);filter:url(#bb-dark-shadow)}
+.bb-node.status-planned .bb-node-box{fill:#1a1816;fill-opacity:.55;filter:none}
+.bb-node-bevel{stroke:#544d46;stroke-opacity:1}
+.bb-band{filter:url(#bb-dark-glow)}
+.bb-edge-glow{stroke-opacity:0.16}
+.bb-flow{filter:url(#bb-dark-glow)}
+.bb-label-bg{fill:#34302d;filter:url(#bb-dark-shadow-sm)}
+.bb-meter-hatch{fill:url(#bb-dark-hatch)}
+.bb-meter-solid{fill:#ead1b5}
+.bb-meter-track{fill:#292521;stroke:#5c564f}
+.bb-meter-big{fill:#ead1b5}
+.bb-legend-bg{fill:#282522;stroke:#5c564f;stroke-opacity:.6}
+.bb-badge.is-implemented{fill:#ead1b5;stroke:#ead1b5}
+.bb-status.is-implemented .bb-badge-text{fill:#1a1816}
+.bb-status.is-implemented .bb-dot-fill{fill:#1a1816}
+.bb-zone-floor-grid{stroke:#3b362f;stroke-opacity:.8}
+.iso-tag-bg{fill:#312d2a;fill-opacity:.94;stroke:#5c564f;stroke-width:1.2;filter:url(#bb-dark-shadow-sm)}
+.iso-shadow{fill:#000000;fill-opacity:0.5;filter:url(#bb-dark-soft)}
+.cat-sage .bb-node-wash{fill:url(#bb-dark-wash-sage)}
+.bb-zone.cat-sage{fill:url(#bb-dark-zone-sage)}
+.cat-sage .bb-zone-accent{stroke:#79c39e}
+.cat-slate .bb-node-wash{fill:url(#bb-dark-wash-slate)}
+.bb-zone.cat-slate{fill:url(#bb-dark-zone-slate)}
+.cat-slate .bb-zone-accent{stroke:#617082}
+.cat-peach .bb-node-wash{fill:url(#bb-dark-wash-peach)}
+.bb-zone.cat-peach{fill:url(#bb-dark-zone-peach)}
+.cat-peach .bb-zone-accent{stroke:#ee9b69}
+.cat-mustard .bb-node-wash{fill:url(#bb-dark-wash-mustard)}
+.bb-zone.cat-mustard{fill:url(#bb-dark-zone-mustard)}
+.cat-mustard .bb-zone-accent{stroke:#ceb05e}
+.cat-mauve .bb-node-wash{fill:url(#bb-dark-wash-mauve)}
+.bb-zone.cat-mauve{fill:url(#bb-dark-zone-mauve)}
+.cat-mauve .bb-zone-accent{stroke:#76536b}
+}
+.bb-flow{fill:none;stroke-width:3.4;stroke-linecap:round;stroke-dasharray:.1 22;opacity:.95;animation:bb-flow 1.6s linear infinite}
+@keyframes bb-flow{to{stroke-dashoffset:-22.1}}
+@media (prefers-reduced-motion:reduce){.bb-flow{animation:none;opacity:0}}
+</style>
+<defs><marker id="bb-arrow-data" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto-start-reverse"><path class="bb-arrow data" d="M 0 0.6 L 10 5 L 0 9.4 L 2.6 5 z"/></marker><marker id="bb-arrow-control" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto-start-reverse"><path class="bb-arrow control" d="M 0 0.6 L 10 5 L 0 9.4 L 2.6 5 z"/></marker><marker id="bb-arrow-failure" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto-start-reverse"><path class="bb-arrow failure" d="M 0 0.6 L 10 5 L 0 9.4 L 2.6 5 z"/></marker></defs><defs><radialGradient id="bb-light-glow-a" cx="0.12" cy="0" r="0.75"><stop offset="0" stop-color="#3d8461" stop-opacity="0.1"/><stop offset="1" stop-color="#3d8461" stop-opacity="0"/></radialGradient><radialGradient id="bb-light-glow-b" cx="0.95" cy="1" r="0.7"><stop offset="0" stop-color="#b9531f" stop-opacity="0.07"/><stop offset="1" stop-color="#b9531f" stop-opacity="0"/></radialGradient><pattern id="bb-light-dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="12" cy="12" r="1" fill="#e3e0dd"/></pattern><pattern id="bb-light-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#fbf9f6"/><rect width="2.4" height="6" fill="#2f2a27"/></pattern><linearGradient id="bb-light-card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdfa" stop-opacity="1"/><stop offset="1" stop-color="#fffdfa" stop-opacity="1"/></linearGradient><filter id="bb-light-shadow" x="-25%" y="-25%" width="150%" height="170%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="10"/><feOffset dy="8" result="o"/><feFlood flood-color="#3b2f26" flood-opacity="0.13"/><feComposite in2="o" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="bb-light-shadow-sm" x="-25%" y="-25%" width="150%" height="170%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="4"/><feOffset dy="3" result="o"/><feFlood flood-color="#3b2f26" flood-opacity="0.1"/><feComposite in2="o" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="bb-light-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="bb-light-soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter><linearGradient id="bb-light-wash-sage" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3d8461" stop-opacity="0.11"/><stop offset="0.55" stop-color="#3d8461" stop-opacity="0"/></linearGradient><linearGradient id="bb-light-zone-sage" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6ece6" stop-opacity="1"/><stop offset="0.45" stop-color="#f2f3ef" stop-opacity="1"/><stop offset="1" stop-color="#f5f5f2" stop-opacity="1"/></linearGradient><linearGradient id="bb-light-wash-slate" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4f5d6e" stop-opacity="0.11"/><stop offset="0.55" stop-color="#4f5d6e" stop-opacity="0"/></linearGradient><linearGradient id="bb-light-zone-slate" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8e8e7" stop-opacity="1"/><stop offset="0.45" stop-color="#f2f1ef" stop-opacity="1"/><stop offset="1" stop-color="#f6f4f2" stop-opacity="1"/></linearGradient><linearGradient id="bb-light-wash-peach" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b4643a" stop-opacity="0.11"/><stop offset="0.55" stop-color="#b4643a" stop-opacity="0"/></linearGradient><linearGradient id="bb-light-zone-peach" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3e9e1" stop-opacity="1"/><stop offset="0.45" stop-color="#f7f2ed" stop-opacity="1"/><stop offset="1" stop-color="#f9f5f0" stop-opacity="1"/></linearGradient><linearGradient id="bb-light-wash-mustard" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8a7026" stop-opacity="0.11"/><stop offset="0.55" stop-color="#8a7026" stop-opacity="0"/></linearGradient><linearGradient id="bb-light-zone-mustard" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efeadf" stop-opacity="1"/><stop offset="0.45" stop-color="#f5f2ec" stop-opacity="1"/><stop offset="1" stop-color="#f8f5f0" stop-opacity="1"/></linearGradient><linearGradient id="bb-light-wash-mauve" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#76536b" stop-opacity="0.11"/><stop offset="0.55" stop-color="#76536b" stop-opacity="0"/></linearGradient><linearGradient id="bb-light-zone-mauve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ece7e7" stop-opacity="1"/><stop offset="0.45" stop-color="#f4f1ef" stop-opacity="1"/><stop offset="1" stop-color="#f7f4f2" stop-opacity="1"/></linearGradient></defs><defs><radialGradient id="bb-dark-glow-a" cx="0.12" cy="0" r="0.75"><stop offset="0" stop-color="#79c39e" stop-opacity="0.13"/><stop offset="1" stop-color="#79c39e" stop-opacity="0"/></radialGradient><radialGradient id="bb-dark-glow-b" cx="0.95" cy="1" r="0.7"><stop offset="0" stop-color="#e77843" stop-opacity="0.09"/><stop offset="1" stop-color="#e77843" stop-opacity="0"/></radialGradient><pattern id="bb-dark-dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="12" cy="12" r="1" fill="#2f2b26"/></pattern><pattern id="bb-dark-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#1a1816"/><rect width="2.4" height="6" fill="#ead1b5"/></pattern><linearGradient id="bb-dark-card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#433d39" stop-opacity="1"/><stop offset="1" stop-color="#383431" stop-opacity="1"/></linearGradient><filter id="bb-dark-shadow" x="-25%" y="-25%" width="150%" height="170%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="12"/><feOffset dy="10" result="o"/><feFlood flood-color="#000000" flood-opacity="0.55"/><feComposite in2="o" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="bb-dark-shadow-sm" x="-25%" y="-25%" width="150%" height="170%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="4"/><feOffset dy="3" result="o"/><feFlood flood-color="#000000" flood-opacity="0.45"/><feComposite in2="o" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="bb-dark-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="bb-dark-soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter><linearGradient id="bb-dark-wash-sage" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#79c39e" stop-opacity="0.2"/><stop offset="0.55" stop-color="#79c39e" stop-opacity="0"/></linearGradient><linearGradient id="bb-dark-zone-sage" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#28322a" stop-opacity="1"/><stop offset="0.45" stop-color="#20221e" stop-opacity="1"/><stop offset="1" stop-color="#1d1e1b" stop-opacity="1"/></linearGradient><linearGradient id="bb-dark-wash-slate" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#617082" stop-opacity="0.2"/><stop offset="0.55" stop-color="#617082" stop-opacity="0"/></linearGradient><linearGradient id="bb-dark-zone-slate" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#252526" stop-opacity="1"/><stop offset="0.45" stop-color="#1e1d1c" stop-opacity="1"/><stop offset="1" stop-color="#1c1b1a" stop-opacity="1"/></linearGradient><linearGradient id="bb-dark-wash-peach" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ee9b69" stop-opacity="0.2"/><stop offset="0.55" stop-color="#ee9b69" stop-opacity="0"/></linearGradient><linearGradient id="bb-dark-zone-peach" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2c22" stop-opacity="1"/><stop offset="0.45" stop-color="#27201b" stop-opacity="1"/><stop offset="1" stop-color="#211d19" stop-opacity="1"/></linearGradient><linearGradient id="bb-dark-wash-mustard" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ceb05e" stop-opacity="0.2"/><stop offset="0.55" stop-color="#ceb05e" stop-opacity="0"/></linearGradient><linearGradient id="bb-dark-zone-mustard" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#352f21" stop-opacity="1"/><stop offset="0.45" stop-color="#25211a" stop-opacity="1"/><stop offset="1" stop-color="#201d19" stop-opacity="1"/></linearGradient><linearGradient id="bb-dark-wash-mauve" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#76536b" stop-opacity="0.2"/><stop offset="0.55" stop-color="#76536b" stop-opacity="0"/></linearGradient><linearGradient id="bb-dark-zone-mauve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#282123" stop-opacity="1"/><stop offset="0.45" stop-color="#201c1b" stop-opacity="1"/><stop offset="1" stop-color="#1d1a19" stop-opacity="1"/></linearGradient></defs>
+<rect class="bb-canvas" x="0" y="0" width="1186" height="1088"/><rect class="bb-bg-dots" x="0" y="0" width="1186" height="1088"/><rect class="bb-bg-glow-a" x="0" y="0" width="1186" height="1088"/><rect class="bb-bg-glow-b" x="0" y="0" width="1186" height="1088"/>
+<rect class="bb-accent" x="40" y="37" width="20" height="3" rx="1.5"/>
+<text class="bb-kicker-top bb-subtitle" x="70" y="42">PI-BOWERBIRD · SYSTEM MAP</text>
+<text class="bb-title" x="40" y="80">Bowerbird architecture</text>
+<text class="bb-subtitle" x="40" y="106">One JSON source renders to interactive HTML, theme-aware SVG, and PNG/WebP rasters.</text>
+<g class="bb-meter" aria-label="78% built"><text class="bb-meter-big" x="1146" y="56" text-anchor="end">78%</text><text class="bb-summary bb-subtitle" x="1072.8" y="55" text-anchor="end">BUILT</text><clipPath id="bb-meter-clip"><rect x="886" y="74" width="260" height="9" rx="4.5"/></clipPath><rect class="bb-meter-track" x="886" y="74" width="260" height="9" rx="4.5"/><g clip-path="url(#bb-meter-clip)"><rect class="bb-meter-solid" x="886" y="74" width="202.2" height="9"/><rect class="bb-meter-hatch" x="1088.2" y="74" width="28.9" height="9"/></g><text class="bb-summary bb-subtitle" x="1146" y="100" text-anchor="end">7 BUILT · 1 PARTIAL · 1 PLANNED</text></g>
+<g class="bb-zone-group cat-sage">
+<rect class="bb-zone cat-sage" x="84.4" y="134.5" width="292" height="465" rx="14"/>
+<path class="bb-zone-accent" d="M 102.4 135.7 H 358.4"/>
+<text class="bb-zone-kicker" x="104.4" y="160.5">01 / INPUT</text>
+<text class="bb-zone-title" x="104.4" y="182.5">Author</text>
+</g>
+<g class="bb-zone-group cat-slate">
+<rect class="bb-zone cat-slate" x="469.2" y="134.5" width="292" height="670" rx="14"/>
+<path class="bb-zone-accent" d="M 487.2 135.7 H 743.2"/>
+<text class="bb-zone-kicker" x="489.2" y="160.5">02 / LAYOUT</text>
+<text class="bb-zone-title" x="489.2" y="182.5">Engine</text>
+</g>
+<g class="bb-zone-group cat-peach">
+<rect class="bb-zone cat-peach" x="854" y="134.5" width="292" height="875" rx="14"/>
+<path class="bb-zone-accent" d="M 872 135.7 H 1127.9"/>
+<text class="bb-zone-kicker" x="874" y="160.5">03 / OUTPUT</text>
+<text class="bb-zone-title" x="874" y="182.5">Render</text>
+</g>
+<g class="bb-edges">
+<path class="bb-edge-glow bb-edge data map-item" d="M 230.4 376.5 L 230.4 425.5" data-traces="render" style="stroke-dasharray:none"/>
+<path class="bb-edge data map-item" d="M 230.4 376.5 L 230.4 425.5" marker-end="url(#bb-arrow-data)" data-traces="render" data-from="agent" data-to="source"/>
+<path class="bb-flow map-item" d="M 230.4 376.5 L 230.4 425.5" data-traces="render"/>
+<path class="bb-edge-glow bb-edge data map-item" d="M 358.4 480.1 L 461.2 480.1 Q 471.2 480.1 471.2 470.1 L 471.2 306.5 Q 471.2 298.5 479.2 298.5 L 487.2 298.5" data-traces="render sync" style="stroke-dasharray:none"/>
+<path class="bb-edge data map-item" d="M 358.4 480.1 L 461.2 480.1 Q 471.2 480.1 471.2 470.1 L 471.2 306.5 Q 471.2 298.5 479.2 298.5 L 487.2 298.5" marker-end="url(#bb-arrow-data)" data-traces="render sync" data-from="source" data-to="model"/>
+<path class="bb-flow map-item" d="M 358.4 480.1 L 461.2 480.1 Q 471.2 480.1 471.2 470.1 L 471.2 306.5 Q 471.2 298.5 479.2 298.5 L 487.2 298.5" data-traces="render sync"/>
+<path class="bb-edge-glow bb-edge data map-item" d="M 576.8 376.5 L 576.8 399.5 Q 576.8 409.5 586.8 409.5 L 607.2 409.5 Q 615.2 409.5 615.2 417.5 L 615.2 425.5" data-traces="render" style="stroke-dasharray:none"/>
+<path class="bb-edge data map-item" d="M 576.8 376.5 L 576.8 399.5 Q 576.8 409.5 586.8 409.5 L 607.2 409.5 Q 615.2 409.5 615.2 417.5 L 615.2 425.5" marker-end="url(#bb-arrow-data)" data-traces="render" data-from="model" data-to="layout"/>
+<path class="bb-flow map-item" d="M 576.8 376.5 L 576.8 399.5 Q 576.8 409.5 586.8 409.5 L 607.2 409.5 Q 615.2 409.5 615.2 417.5 L 615.2 425.5" data-traces="render"/>
+<path class="bb-edge-glow bb-edge control map-item" d="M 653.6 376.5 L 653.6 401.5 Q 653.6 411.5 663.6 411.5 L 747.2 411.5 Q 757.2 411.5 757.2 421.5 L 757.2 604.5 Q 757.2 614.5 747.2 614.5 L 623.2 614.5 Q 615.2 614.5 615.2 622.5 L 615.2 630.5" data-traces="sync" style="stroke-dasharray:none"/>
+<path class="bb-edge control map-item" d="M 653.6 376.5 L 653.6 401.5 Q 653.6 411.5 663.6 411.5 L 747.2 411.5 Q 757.2 411.5 757.2 421.5 L 757.2 604.5 Q 757.2 614.5 747.2 614.5 L 623.2 614.5 Q 615.2 614.5 615.2 622.5 L 615.2 630.5" marker-end="url(#bb-arrow-control)" data-traces="sync" data-from="model" data-to="status"/>
+<path class="bb-flow map-item" d="M 653.6 376.5 L 653.6 401.5 Q 653.6 411.5 663.6 411.5 L 747.2 411.5 Q 757.2 411.5 757.2 421.5 L 757.2 604.5 Q 757.2 614.5 747.2 614.5 L 623.2 614.5 Q 615.2 614.5 615.2 622.5 L 615.2 630.5" data-traces="sync"/>
+<path class="bb-edge-glow bb-edge control map-item" d="M 487.2 708.5 L 384.4 708.5 Q 374.4 708.5 374.4 698.5 L 374.4 534.9 Q 374.4 526.9 366.4 526.9 L 358.4 526.9" data-traces="sync" style="stroke-dasharray:none"/>
+<path class="bb-edge control map-item" d="M 487.2 708.5 L 384.4 708.5 Q 374.4 708.5 374.4 698.5 L 374.4 534.9 Q 374.4 526.9 366.4 526.9 L 358.4 526.9" marker-end="url(#bb-arrow-control)" data-traces="sync" data-from="status" data-to="source"/>
+<path class="bb-flow map-item" d="M 487.2 708.5 L 384.4 708.5 Q 374.4 708.5 374.4 698.5 L 374.4 534.9 Q 374.4 526.9 366.4 526.9 L 358.4 526.9" data-traces="sync"/>
+<path class="bb-edge-glow bb-edge data map-item" d="M 743.2 480.1 L 846 480.1 Q 856 480.1 856 470.1 L 856 306.5 Q 856 298.5 864 298.5 L 872 298.5" data-traces="render" style="stroke-dasharray:none"/>
+<path class="bb-edge data map-item" d="M 743.2 480.1 L 846 480.1 Q 856 480.1 856 470.1 L 856 306.5 Q 856 298.5 864 298.5 L 872 298.5" marker-end="url(#bb-arrow-data)" data-traces="render" data-from="layout" data-to="html"/>
+<path class="bb-flow map-item" d="M 743.2 480.1 L 846 480.1 Q 856 480.1 856 470.1 L 856 306.5 Q 856 298.5 864 298.5 L 872 298.5" data-traces="render"/>
+<path class="bb-edge-glow bb-edge data map-item" d="M 743.2 526.9 L 846 526.9 Q 856 526.9 856 516.9 L 856 511.5 Q 856 503.5 864 503.5 L 872 503.5" data-traces="render" style="stroke-dasharray:none"/>
+<path class="bb-edge data map-item" d="M 743.2 526.9 L 846 526.9 Q 856 526.9 856 516.9 L 856 511.5 Q 856 503.5 864 503.5 L 872 503.5" marker-end="url(#bb-arrow-data)" data-traces="render" data-from="layout" data-to="svg"/>
+<path class="bb-flow map-item" d="M 743.2 526.9 L 846 526.9 Q 856 526.9 856 516.9 L 856 511.5 Q 856 503.5 864 503.5 L 872 503.5" data-traces="render"/>
+<path class="bb-edge-glow bb-edge data map-item" d="M 999.9 581.5 L 999.9 630.5" data-traces="render" style="stroke-dasharray:none"/>
+<path class="bb-edge data map-item" d="M 999.9 581.5 L 999.9 630.5" marker-end="url(#bb-arrow-data)" data-traces="render" data-from="svg" data-to="raster"/>
+<path class="bb-flow map-item" d="M 999.9 581.5 L 999.9 630.5" data-traces="render"/>
+<path class="bb-edge-glow bb-edge failure is-planned map-item" d="M 999.9 786.5 L 999.9 835.5" style="stroke-dasharray:none"/>
+<path class="bb-edge failure is-planned map-item" d="M 999.9 786.5 L 999.9 835.5" marker-end="url(#bb-arrow-failure)" data-from="raster" data-to="pages"/>
+<g class="bb-edge-label map-item" data-traces="render"><rect class="bb-label-bg" x="201" y="391.5" width="58.8" height="19" rx="9.5"/><text class="bb-label data" x="230.4" y="404.6" text-anchor="middle">writes</text></g>
+<g class="bb-edge-label map-item" data-traces="render sync"><rect class="bb-label-bg" x="389" y="470.6" width="51.7" height="19" rx="9.5"/><text class="bb-label data" x="414.8" y="483.7" text-anchor="middle">parse</text></g>
+<g class="bb-edge-label map-item" data-traces="sync"><rect class="bb-label-bg" x="646.1" y="605" width="80.2" height="19" rx="9.5"/><text class="bb-label control" x="686.2" y="618.1" text-anchor="middle">on commit</text></g>
+<g class="bb-edge-label map-item" data-traces="sync"><rect class="bb-label-bg" x="345" y="608.2" width="58.8" height="19" rx="9.5"/><text class="bb-label control" x="374.4" y="621.3" text-anchor="middle">status</text></g>
+<g class="bb-edge-label map-item" data-traces="render"><rect class="bb-label-bg" x="770.2" y="517.4" width="58.8" height="19" rx="9.5"/><text class="bb-label data" x="799.6" y="530.5" text-anchor="middle">routes</text></g>
+<g class="bb-edge-label map-item" data-traces="render"><rect class="bb-label-bg" x="949.2" y="596.5" width="101.6" height="19" rx="9.5"/><text class="bb-label data" x="999.9" y="609.6" text-anchor="middle">static frame</text></g>
+<g class="bb-edge-label map-item"><rect class="bb-label-bg" x="967" y="801.5" width="65.9" height="19" rx="9.5"/><text class="bb-label failure" x="999.9" y="814.6" text-anchor="middle">not yet</text></g>
+</g>
+<a href="https://github.com/evoclock/pi-bowerbird/blob/main/skills/bowerbird/SKILL.md" target="_top">
+<g class="bb-node map-item cat-sage status-implemented" data-id="agent" data-traces="render">
+<rect class="bb-node-box" x="102.4" y="220.5" width="256" height="156" rx="10"/>
+<rect class="bb-node-wash" x="102.4" y="220.5" width="256" height="156" rx="10"/>
+<path class="bb-node-bevel" d="M 112.4 221.5 H 348.4"/>
+<rect class="bb-band" x="102.4" y="220.5" width="5" height="156" rx="2.5"/>
+<text class="bb-kicker" x="120.4" y="244.5">PI SKILL</text>
+<g class="bb-status is-implemented" aria-label="status: implemented"><rect class="bb-badge is-implemented" x="289.4" y="230.5" width="59" height="18" rx="9"/><circle class="bb-dot bb-dot-fill" cx="300.4" cy="239.5" r="4.2"/><text class="bb-badge-text" x="308.9" y="243.1">BUILT</text></g>
+<text class="bb-node-title" x="120.4" y="266.5">Agent authoring</text>
+<text class="bb-copy" x="120.4" y="288.5">SKILL.md teaches the IR</text>
+<text class="bb-copy" x="120.4" y="305.5">grid placement, no pixels</text>
+</g>
+</a>
+<a href="https://github.com/evoclock/pi-bowerbird/blob/main/examples/bowerbird.bower.json" target="_top">
+<g class="bb-node map-item cat-sage status-implemented" data-id="source" data-traces="render sync">
+<rect class="bb-node-box" x="102.4" y="425.5" width="256" height="156" rx="10"/>
+<rect class="bb-node-wash" x="102.4" y="425.5" width="256" height="156" rx="10"/>
+<path class="bb-node-bevel" d="M 112.4 426.5 H 348.4"/>
+<rect class="bb-band" x="102.4" y="425.5" width="5" height="156" rx="2.5"/>
+<text class="bb-kicker" x="120.4" y="449.5">JSON</text>
+<g class="bb-status is-implemented" aria-label="status: implemented"><rect class="bb-badge is-implemented" x="289.4" y="435.5" width="59" height="18" rx="9"/><circle class="bb-dot bb-dot-fill" cx="300.4" cy="444.5" r="4.2"/><text class="bb-badge-text" x="308.9" y="448.1">BUILT</text></g>
+<text class="bb-node-title" x="120.4" y="471.5">Diagram source</text>
+<text class="bb-copy" x="120.4" y="493.5">*.bower.json</text>
+<text class="bb-copy" x="120.4" y="510.5">single source of truth</text>
+</g>
+</a>
+<a href="https://github.com/evoclock/pi-bowerbird/blob/main/lib/model.mjs" target="_top">
+<g class="bb-node map-item cat-slate status-implemented" data-id="model" data-traces="render sync">
+<rect class="bb-node-box" x="487.2" y="220.5" width="256" height="156" rx="10"/>
+<rect class="bb-node-wash" x="487.2" y="220.5" width="256" height="156" rx="10"/>
+<path class="bb-node-bevel" d="M 497.2 221.5 H 733.2"/>
+<rect class="bb-band" x="487.2" y="220.5" width="5" height="156" rx="2.5"/>
+<text class="bb-kicker" x="505.2" y="244.5">MODULE</text>
+<g class="bb-status is-implemented" aria-label="status: implemented"><rect class="bb-badge is-implemented" x="674.2" y="230.5" width="59" height="18" rx="9"/><circle class="bb-dot bb-dot-fill" cx="685.2" cy="239.5" r="4.2"/><text class="bb-badge-text" x="693.7" y="243.1">BUILT</text></g>
+<text class="bb-node-title" x="505.2" y="266.5">Model + validate</text>
+<text class="bb-copy" x="505.2" y="288.5">schema, ids, grid cells</text>
+<text class="bb-copy" x="505.2" y="305.5">stable problem codes</text>
+</g>
+</a>
+<a href="https://github.com/evoclock/pi-bowerbird/blob/main/lib/layout.mjs" target="_top">
+<g class="bb-node map-item cat-slate status-implemented" data-id="layout" data-traces="render">
+<rect class="bb-node-box" x="487.2" y="425.5" width="256" height="156" rx="10"/>
+<rect class="bb-node-wash" x="487.2" y="425.5" width="256" height="156" rx="10"/>
+<path class="bb-node-bevel" d="M 497.2 426.5 H 733.2"/>
+<rect class="bb-band" x="487.2" y="425.5" width="5" height="156" rx="2.5"/>
+<text class="bb-kicker" x="505.2" y="449.5">MODULE</text>
+<g class="bb-status is-implemented" aria-label="status: implemented"><rect class="bb-badge is-implemented" x="674.2" y="435.5" width="59" height="18" rx="9"/><circle class="bb-dot bb-dot-fill" cx="685.2" cy="444.5" r="4.2"/><text class="bb-badge-text" x="693.7" y="448.1">BUILT</text></g>
+<text class="bb-node-title" x="505.2" y="471.5">Route + place</text>
+<text class="bb-copy" x="505.2" y="493.5">A* orthogonal routes</text>
+<text class="bb-copy" x="505.2" y="510.5">label clearance</text>
+</g>
+</a>
+<a href="https://github.com/evoclock/pi-bowerbird/blob/main/lib/status.mjs" target="_top">
+<g class="bb-node map-item cat-mauve status-partial" data-id="status" data-traces="sync">
+<rect class="bb-node-box" x="487.2" y="630.5" width="256" height="156" rx="10"/>
+<rect class="bb-node-wash" x="487.2" y="630.5" width="256" height="156" rx="10"/>
+<path class="bb-node-bevel" d="M 497.2 631.5 H 733.2"/>
+<rect class="bb-band bb-band-rest" x="487.2" y="630.5" width="5" height="156" rx="2.5"/>
+<rect class="bb-band" x="487.2" y="630.5" width="5" height="78" rx="2.5"/>
+<text class="bb-kicker" x="505.2" y="654.5">MODULE</text>
+<g class="bb-status is-partial" aria-label="status: partial"><rect class="bb-badge is-partial" x="661" y="640.5" width="72.2" height="18" rx="9"/><circle class="bb-dot" cx="672" cy="649.5" r="4.2"/><path class="bb-dot-fill" d="M 672 645.3 A 4.2 4.2 0 0 0 672 653.7 Z"/><text class="bb-badge-text" x="680.5" y="653.1">PARTIAL</text></g>
+<text class="bb-node-title" x="505.2" y="676.5">Status sync</text>
+<text class="bb-copy" x="505.2" y="698.5">git evidence -&gt; status</text>
+<text class="bb-copy" x="505.2" y="715.5">pre-commit hook</text>
+</g>
+</a>
+<a href="https://github.com/evoclock/pi-bowerbird/blob/main/lib/render-html.mjs" target="_top">
+<g class="bb-node map-item cat-peach status-implemented" data-id="html" data-traces="render">
+<rect class="bb-node-box" x="872" y="220.5" width="256" height="156" rx="10"/>
+<rect class="bb-node-wash" x="872" y="220.5" width="256" height="156" rx="10"/>
+<path class="bb-node-bevel" d="M 882 221.5 H 1117.9"/>
+<rect class="bb-band" x="872" y="220.5" width="5" height="156" rx="2.5"/>
+<text class="bb-kicker" x="890" y="244.5">RENDERER</text>
+<g class="bb-status is-implemented" aria-label="status: implemented"><rect class="bb-badge is-implemented" x="1058.9" y="230.5" width="59" height="18" rx="9"/><circle class="bb-dot bb-dot-fill" cx="1069.9" cy="239.5" r="4.2"/><text class="bb-badge-text" x="1078.4" y="243.1">BUILT</text></g>
+<text class="bb-node-title" x="890" y="266.5">Interactive HTML</text>
+<text class="bb-copy" x="890" y="288.5">drawer, traces, motion</text>
+<text class="bb-copy" x="890" y="305.5">light/dark toggle</text>
+</g>
+</a>
+<a href="https://github.com/evoclock/pi-bowerbird/blob/main/lib/render-svg.mjs" target="_top">
+<g class="bb-node map-item cat-peach status-implemented" data-id="svg" data-traces="render">
+<rect class="bb-node-box" x="872" y="425.5" width="256" height="156" rx="10"/>
+<rect class="bb-node-wash" x="872" y="425.5" width="256" height="156" rx="10"/>
+<path class="bb-node-bevel" d="M 882 426.5 H 1117.9"/>
+<rect class="bb-band" x="872" y="425.5" width="5" height="156" rx="2.5"/>
+<text class="bb-kicker" x="890" y="449.5">RENDERER</text>
+<g class="bb-status is-implemented" aria-label="status: implemented"><rect class="bb-badge is-implemented" x="1058.9" y="435.5" width="59" height="18" rx="9"/><circle class="bb-dot bb-dot-fill" cx="1069.9" cy="444.5" r="4.2"/><text class="bb-badge-text" x="1078.4" y="448.1">BUILT</text></g>
+<text class="bb-node-title" x="890" y="471.5">Flat + iso SVG</text>
+<text class="bb-copy" x="890" y="493.5">no var(), no JS</text>
+<text class="bb-copy" x="890" y="510.5">README &lt;picture&gt;</text>
+</g>
+</a>
+<a href="https://github.com/evoclock/pi-bowerbird/blob/main/lib/export.mjs" target="_top">
+<g class="bb-node map-item cat-mustard status-implemented" data-id="raster" data-traces="render">
+<rect class="bb-node-box" x="872" y="630.5" width="256" height="156" rx="10"/>
+<rect class="bb-node-wash" x="872" y="630.5" width="256" height="156" rx="10"/>
+<path class="bb-node-bevel" d="M 882 631.5 H 1117.9"/>
+<rect class="bb-band" x="872" y="630.5" width="5" height="156" rx="2.5"/>
+<text class="bb-kicker" x="890" y="654.5">EXPORT</text>
+<g class="bb-status is-implemented" aria-label="status: implemented"><rect class="bb-badge is-implemented" x="1058.9" y="640.5" width="59" height="18" rx="9"/><circle class="bb-dot bb-dot-fill" cx="1069.9" cy="649.5" r="4.2"/><text class="bb-badge-text" x="1078.4" y="653.1">BUILT</text></g>
+<text class="bb-node-title" x="890" y="676.5">PNG + WebP</text>
+<text class="bb-copy" x="890" y="698.5">rsvg-convert + cwebp</text>
+<text class="bb-copy" x="890" y="715.5">resvg/sharp fallback</text>
+</g>
+</a>
+<a href="https://github.com/evoclock/pi-bowerbird/blob/main/.github/workflows/bowerbird.yml" target="_top">
+<g class="bb-node map-item cat-mustard status-planned" data-id="pages">
+<rect class="bb-node-box" x="872" y="835.5" width="256" height="156" rx="10"/>
+<rect class="bb-node-wash" x="872" y="835.5" width="256" height="156" rx="10"/>
+<path class="bb-node-bevel" d="M 882 836.5 H 1117.9"/>
+<rect class="bb-band" x="872" y="835.5" width="5" height="156" rx="2.5"/>
+<text class="bb-kicker" x="890" y="859.5">WORKFLOW</text>
+<g class="bb-status is-planned" aria-label="status: planned"><rect class="bb-badge is-planned" x="1045.7" y="845.5" width="72.2" height="18" rx="9" stroke-dasharray="3 2.4"/><circle class="bb-dot" cx="1056.7" cy="854.5" r="4.2" stroke-dasharray="2 1.6"/><text class="bb-badge-text" x="1065.2" y="858.1">PLANNED</text></g>
+<text class="bb-node-title" x="890" y="881.5">Pages publish</text>
+<text class="bb-copy" x="890" y="903.5">CI renders on push</text>
+<text class="bb-copy" x="890" y="920.5">gallery site</text>
+</g>
+</a>
+<g class="bb-legend" aria-label="Legend"><rect class="bb-legend-bg" x="24" y="1038" width="1138" height="32" rx="10"/><rect class="bb-key cat-sage" x="40" y="1049" width="10" height="10" rx="2.5"/><text class="bb-legend-text" x="56" y="1058">Authoring</text><rect class="bb-key cat-slate" x="134.925" y="1049" width="10" height="10" rx="2.5"/><text class="bb-legend-text" x="150.925" y="1058">Layout</text><rect class="bb-key cat-peach" x="210.875" y="1049" width="10" height="10" rx="2.5"/><text class="bb-legend-text" x="226.875" y="1058">Rendering</text><rect class="bb-key cat-mustard" x="305.8" y="1049" width="10" height="10" rx="2.5"/><text class="bb-legend-text" x="321.8" y="1058">Export</text><rect class="bb-key cat-mauve" x="381.75" y="1049" width="10" height="10" rx="2.5"/><text class="bb-legend-text" x="397.75" y="1058">Status</text><path class="bb-edge data" d="M 457.7 1054 L 479.7 1054"/><text class="bb-legend-text" x="487.7" y="1058">Data flow</text><path class="bb-edge control" d="M 566.625 1054 L 588.625 1054"/><text class="bb-legend-text" x="596.625" y="1058">Control flow</text><path class="bb-edge failure" d="M 694.525 1054 L 716.525 1054"/><text class="bb-legend-text" x="724.525" y="1058">Failure flow</text><g class="bb-status is-implemented"><circle class="bb-dot bb-dot-fill" cx="826.4" cy="1054" r="4.2"/></g><text class="bb-legend-text" x="838.425" y="1058">Built</text><g class="bb-status is-partial"><circle class="bb-dot" cx="896.1" cy="1054" r="4.2"/><path class="bb-dot-fill" d="M 896.1 1049.8 A 4.2 4.2 0 0 0 896.1 1058.2 Z"/></g><text class="bb-legend-text" x="908.05" y="1058">Partial</text><g class="bb-status is-planned"><circle class="bb-dot" cx="978.3" cy="1054" r="4.2" stroke-dasharray="2 1.6"/></g><text class="bb-legend-text" x="990.3249999999999" y="1058">Planned</text></g>
+</svg>
