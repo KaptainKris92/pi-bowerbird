@@ -19,10 +19,10 @@ async function withBrowser(fn) {
   mkdirSync(scratch, { recursive: true });
   const port = 9300 + Math.floor(Math.random() * 500);
   const profile = mkdtempSync(path.join(scratch, "chrome-prof-"));
-  const chrome = spawn(CHROME, ["--headless=new", "--disable-gpu", `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, "about:blank"], { stdio: "ignore" });
+  const chrome = spawn(CHROME, ["--headless=new", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu", `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, "about:blank"], { stdio: "ignore" });
   try {
     let wsUrl;
-    for (let i = 0; i < 60 && !wsUrl; i++) {
+    for (let i = 0; i < 150 && !wsUrl; i++) {
       try { wsUrl = (await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()).find((x) => x.type === "page")?.webSocketDebuggerUrl; } catch {}
       if (!wsUrl) await sleep(200);
     }
