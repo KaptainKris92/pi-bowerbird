@@ -1,0 +1,10 @@
+# Product CI. The organisation pipeline uploads this file onto the mac-mini queue.
+# No lockfile: this package has no dependencies, so the install step is npm install.
+steps:
+  - label: "Test"
+    agents: { queue: mac-mini }
+    timeout_in_minutes: 15
+    command:
+      - ".buildkite/host.sh"
+      - "npm install"
+      - "npm test"
