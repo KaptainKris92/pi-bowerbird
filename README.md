@@ -113,6 +113,10 @@ bowerbird diff docs/diagrams/system.bower.json    # structural changes since HEA
 
 For MARP, use `![bg contain](docs/diagrams/system.light.svg)`, or the WebP for PDF and PPTX export.
 
+## CI
+
+Product CI is Buildkite on the `mac-mini` queue. The organisation pipeline uploads [`.buildkite/pipeline.yml`](.buildkite/pipeline.yml), which checks Node >= 22, then runs `npm install` and `npm test`.
+
 ## License
 
 MIT.
